@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mượn sách</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="page-intro page-intro--borrow glass-card reveal">
+          <p class="eyebrow">Mượn sách</p>
+          <h1>Kiểm soát việc mượn trả một cách rõ ràng và thuận tiện.</h1>
+          <p>Giám sát thời hạn, gia hạn và số tiền phạt khi quá hạn.</p>
+        </section>
+
+        <div class="content-grid">
+          <section class="glass-card card-panel reveal" data-page="borrow">
+            <h3>Sách đang mượn</h3>
+            <div data-borrowed-list></div>
+          </section>
+          <section class="glass-card card-panel reveal">
+            <h3>Lịch sử trả</h3>
+            <div data-history-list></div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/borrow.js"></script>
+
+    <script>
+      requireLogin();
+    </script>
+  </body>
+</html>

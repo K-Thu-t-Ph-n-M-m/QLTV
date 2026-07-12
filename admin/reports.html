@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Báo cáo - Thư viện thông minh</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/light.css" />
+    <link rel="stylesheet" href="../css/dark.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <!-- Nhúng thư viện vẽ biểu đồ xịn xò -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="admin-header"></div>
+      <main class="admin-layout">
+        <div id="admin-sidebar"></div>
+        <section class="glass-card admin-content">
+          <div style="margin-bottom: 24px">
+            <h1>Báo cáo & Thống kê</h1>
+            <p>Phân tích số liệu tự động dựa trên dữ liệu thật của hệ thống.</p>
+          </div>
+
+          <div class="stats-grid" id="reportStatsGrid"></div>
+
+          <!-- KHUNG BIỂU ĐỒ SLAY -->
+          <div
+            style="
+              margin-top: 32px;
+              background: var(--surface-color, #fff);
+              padding: 24px;
+              border-radius: 12px;
+              box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            "
+          >
+            <h3 style="margin-bottom: 20px; font-size: 1.2rem">
+              Phân bổ Thể loại sách trong kho (Dữ liệu thực)
+            </h3>
+            <div style="height: 400px; display: flex; justify-content: center">
+              <canvas id="slayChart"></canvas>
+            </div>
+          </div>
+        </section>
+      </main>
+      <div id="admin-footer"></div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/notification.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/components.js"></script>
+
+    <script>
+      requireAdmin();
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          if (typeof DataLoader !== "undefined") await DataLoader.initialize();
+        } catch (e) {}
+
+        const books = Storage.getBooks() || [];
+        const users = Storage.getUsers() || [];
+        const suppliers = Storage.getSuppliers() || [];
+        const borrows = Storage.getBorrows() || [];
+
+        const totalBooks = books.length;
+        const totalAvailable = books.reduce(
+          (sum, b) => sum + (b.available || 0),
+          0,
+        );
+        const totalUsers = users.length;
+        const activeBorrows = borrows.filter(
+          (b) => b.status === "Đang mượn" || b.status.includes("quá hạn"),
+        ).length;
+
+        document.getElementById("reportStatsGrid").innerHTML = `
+            <div class="report-stat-card glass-card" style="padding: 20px;">
+               <h3 style="font-size: 1rem; color: #6b7280; font-weight: 500;">📚 Kho sách thực tế</h3>
+               <p style="font-size: 2.5rem; font-weight: bold; color: #0284c7; margin-top: 8px;">${totalBooks}</p>
+               <small style="color: #6b7280;">Tổng bản in trên kệ: <b>${totalAvailable}</b></small>
+            </div>
+            <div class="report-stat-card glass-card" style="padding: 20px;">
+               <h3 style="font-size: 1rem; color: #6b7280; font-weight: 500;">👥 Cơ cấu thành viên</h3>
+               <p style="font-size: 2.5rem; font-weight: bold; color: #16a34a; margin-top: 8px;">${totalUsers}</p>
+            </div>
+            <div class="report-stat-card glass-card" style="padding: 20px;">
+               <h3 style="font-size: 1rem; color: #6b7280; font-weight: 500;">🔄 Lượt đang mượn</h3>
+               <p style="font-size: 2.5rem; font-weight: bold; color: #ea580c; margin-top: 8px;">${activeBorrows}</p>
+            </div>
+            <div class="report-stat-card glass-card" style="padding: 20px;">
+               <h3 style="font-size: 1rem; color: #6b7280; font-weight: 500;">🏢 Đối tác</h3>
+               <p style="font-size: 2.5rem; font-weight: bold; color: #ca8a04; margin-top: 8px;">${suppliers.length}</p>
+            </div>
+         `;
+
+        // VẼ BIỂU ĐỒ SLAY BẰNG CHART.JS
+        // 1. Lọc và đếm số lượng sách theo từng thể loại
+        const categoryCounts = {};
+        books.forEach((book) => {
+          const cat = book.category || "Khác";
+          categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+        });
+
+        const labels = Object.keys(categoryCounts);
+        const dataValues = Object.values(categoryCounts);
+
+        // 2. Setup Chart
+        const ctx = document.getElementById("slayChart").getContext("2d");
+
+        new Chart(ctx, {
+          type: "doughnut", // Dạng biểu đồ vòng bánh donut
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                data: dataValues,
+                backgroundColor: [
+                  "#3b82f6", // Xanh dương
+                  "#8b5cf6", // Tím mộng mơ
+                  "#ec4899", // Hồng slay
+                  "#10b981", // Xanh lá
+                  "#f59e0b", // Vàng cam
+                  "#06b6d4", // Xanh cyan
+                ],
+                borderWidth: 0,
+                hoverOffset: 15, // Hiệu ứng giật ra khi hover
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: "right",
+                labels: {
+                  font: { size: 14, family: "'Inter', sans-serif" },
+                  padding: 20,
+                },
+              },
+            },
+            animation: {
+              animateScale: true,
+              animateRotate: true,
+              duration: 1500, // Nhảy lên từ từ trong 1.5s
+              easing: "easeOutQuart",
+            },
+          },
+        });
+      });
+    </script>
+  </body>
+</html>

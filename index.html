@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thư viện thông minh</title>
+    <meta
+      name="description"
+      content="Một nền tảng thư viện thông minh với trải nghiệm hiện đại, giao diện tối/ sáng và các tính năng quản lý thư viện thông minh."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/animation.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+          <a class="btn btn--ghost" href="login.html">Đăng nhập</a>
+          <a class="btn btn--primary" href="register.html">Đăng ký</a>
+        </div>
+      </header>
+
+      <main>
+        <section class="hero-section hero glass-card reveal">
+          <div class="hero__content">
+            <p class="eyebrow">Thư viện hiện đại cho thế hệ mới</p>
+            <h1>
+              Khám phá tri thức bằng trải nghiệm thông minh, mượt mà và cá nhân
+              hóa.
+            </h1>
+            <p>
+              Gợi ý sách tự động, đặt trước sách nhanh chóng, lịch sử mượn rõ
+              ràng và giao diện đáp ứng mọi thiết bị.
+            </p>
+            <div class="hero__actions">
+              <a class="btn btn--primary" href="search.html">Khám phá ngay</a>
+              <a class="btn btn--ghost" href="recommendation.html">Xem gợi ý</a>
+              <a class="btn btn--ghost" href="report.html">Xem báo cáo</a>
+            </div>
+            <div class="hero-search">
+              <input
+                type="text"
+                placeholder="Tìm kiếm tên sách, tác giả hoặc ISBN"
+              />
+              <button class="btn btn--primary" type="button">Tìm ngay</button>
+            </div>
+            <div class="hero__stats">
+              <div>
+                <strong>20k+</strong>
+                <span>đầu sách</span>
+              </div>
+              <div>
+                <strong>8k+</strong>
+                <span>độc giả</span>
+              </div>
+              <div>
+                <strong>150k+</strong>
+                <span>lượt mượn</span>
+              </div>
+              <div>
+                <strong>4.9</strong>
+                <span>đánh giá</span>
+              </div>
+            </div>
+          </div>
+          <div class="hero__visual">
+            <div class="hero__banner"></div>
+          </div>
+        </section>
+
+        <section class="stats-section section reveal">
+          <div class="section__header">
+            <h2>Thống kê nhanh</h2>
+            <span class="section__hint">Cập nhật liên tục</span>
+          </div>
+          <div class="stats-grid">
+            <article class="stat-card glass-card">
+              <div class="stat-card__icon">📚</div>
+              <div>
+                <strong data-counter="20000">0</strong>
+                <p>Đầu sách</p>
+              </div>
+            </article>
+            <article class="stat-card glass-card">
+              <div class="stat-card__icon">👤</div>
+              <div>
+                <strong data-counter="8000">0</strong>
+                <p>Độc giả</p>
+              </div>
+            </article>
+            <article class="stat-card glass-card">
+              <div class="stat-card__icon">📖</div>
+              <div>
+                <strong data-counter="150000">0</strong>
+                <p>Lượt mượn</p>
+              </div>
+            </article>
+            <article class="stat-card glass-card">
+              <div class="stat-card__icon">⭐</div>
+              <div>
+                <strong data-counter="4.9" data-decimals="1">0</strong>
+                <p>Đánh giá</p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="featured-section section reveal">
+          <div class="section__header">
+            <h2>Sách nổi bật</h2>
+            <a href="search.html">Xem tất cả</a>
+          </div>
+          <div class="book-grid" id="featuredBooksGrid"></div>
+        </section>
+
+        <section class="new-books-section section reveal">
+          <div class="section__header">
+            <h2>Sách mới</h2>
+            <span class="section__hint">Được nhập trong tuần</span>
+          </div>
+          <div class="new-books-grid">
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-one"></div>
+              <h3>Người đọc thông minh</h3>
+              <p>Phương pháp đọc sâu hiệu quả</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-two"></div>
+              <h3>Thiết kế tư duy</h3>
+              <p>Không gian học tập mới</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-three"></div>
+              <h3>Học cách tập trung</h3>
+              <p>Điều chỉnh thói quen đọc</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-four"></div>
+              <h3>Trí tuệ dữ liệu</h3>
+              <p>Phân tích thông minh</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-five"></div>
+              <h3>Đêm không ngủ</h3>
+              <p>Khám phá tri thức</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-six"></div>
+              <h3>Hành trình nghiên cứu</h3>
+              <p>Tri thức toàn diện</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-seven"></div>
+              <h3>Góc sáng tạo</h3>
+              <p>Đọc để tạo ra</p>
+            </article>
+            <article class="new-book-card glass-card">
+              <div class="new-book-card__image image-eight"></div>
+              <h3>Thư viện tương lai</h3>
+              <p>Những thư viện số mới</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="top-borrow-section section reveal">
+          <div class="section__header">
+            <h2>Top mượn</h2>
+            <span class="section__hint">Sách được yêu thích nhất</span>
+          </div>
+          <div class="carousel-row">
+            <article class="carousel-card glass-card">
+              <div class="carousel-card__image image-one"></div>
+              <h3>Atomic Habits</h3>
+              <p>1.240 lượt mượn</p>
+            </article>
+            <article class="carousel-card glass-card">
+              <div class="carousel-card__image image-two"></div>
+              <h3>Deep Work</h3>
+              <p>980 lượt mượn</p>
+            </article>
+            <article class="carousel-card glass-card">
+              <div class="carousel-card__image image-three"></div>
+              <h3>Thinking Fast</h3>
+              <p>842 lượt mượn</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="category-section section reveal">
+          <div class="section__header">
+            <h2>Danh mục</h2>
+          </div>
+          <div class="category-grid">
+            <div class="category-card glass-card category-card--blue">
+              <div class="category-card__icon">🧠</div>
+              <h3>Khoa học</h3>
+              <p>1.280 sách</p>
+            </div>
+            <div class="category-card glass-card category-card--cyan">
+              <div class="category-card__icon">💻</div>
+              <h3>Công nghệ</h3>
+              <p>1.840 sách</p>
+            </div>
+            <div class="category-card glass-card category-card--violet">
+              <div class="category-card__icon">📖</div>
+              <h3>Văn học</h3>
+              <p>3.120 sách</p>
+            </div>
+            <div class="category-card glass-card category-card--amber">
+              <div class="category-card__icon">💼</div>
+              <h3>Kinh doanh</h3>
+              <p>2.040 sách</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="timeline-section section reveal">
+          <div class="section__header">
+            <h2>Quy trình mượn sách</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline__step">1. Tìm kiếm</div>
+            <div class="timeline__step">2. Đăng nhập</div>
+            <div class="timeline__step">3. Mượn</div>
+            <div class="timeline__step">4. Đọc</div>
+            <div class="timeline__step">5. Trả</div>
+          </div>
+        </section>
+
+        <section class="feature-section section reveal">
+          <div class="section__header">
+            <h2>Tại sao chọn thư viện?</h2>
+          </div>
+          <div class="feature-grid">
+            <article class="feature-card glass-card">
+              <h3>AI Recommendation</h3>
+              <p>Gợi ý sách phù hợp theo thói quen đọc</p>
+            </article>
+            <article class="feature-card glass-card">
+              <h3>Mượn online</h3>
+              <p>Quản lý mượn trả nhanh chóng</p>
+            </article>
+            <article class="feature-card glass-card">
+              <h3>Đặt trước</h3>
+              <p>Nhận thông báo khi sách sẵn sàng</p>
+            </article>
+            <article class="feature-card glass-card">
+              <h3>Thống kê</h3>
+              <p>Dashboard theo thời gian thực</p>
+            </article>
+            <article class="feature-card glass-card">
+              <h3>Đồng bộ</h3>
+              <p>Tương thích nhiều nền tảng</p>
+            </article>
+            <article class="feature-card glass-card">
+              <h3>Đa nền tảng</h3>
+              <p>Truy cập từ web, tablet, điện thoại</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="author-section section reveal">
+          <div class="section__header">
+            <h2>Tác giả nổi bật</h2>
+          </div>
+          <div class="author-grid">
+            <article class="author-card glass-card">
+              <div class="avatar">JC</div>
+              <h3>James Clear</h3>
+              <p>240 đầu sách</p>
+            </article>
+            <article class="author-card glass-card">
+              <div class="avatar avatar--alt">DK</div>
+              <h3>Daniel Kahneman</h3>
+              <p>180 đầu sách</p>
+            </article>
+            <article class="author-card glass-card">
+              <div class="avatar avatar--accent">CN</div>
+              <h3>Cal Newport</h3>
+              <p>160 đầu sách</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="review-section section reveal">
+          <div class="section__header">
+            <h2>Thành viên nói gì</h2>
+          </div>
+          <div class="review-grid">
+            <article class="review-card glass-card">
+              <div class="review-card__top">
+                <div class="avatar">AN</div>
+                <div>
+                  <h3>Nguyễn Minh An</h3>
+                  <p>★★★★★</p>
+                </div>
+              </div>
+              <p>
+                Giao diện thư viện rất sang trọng và khiến việc tìm sách trở nên
+                dễ dàng.
+              </p>
+            </article>
+            <article class="review-card glass-card">
+              <div class="review-card__top">
+                <div class="avatar avatar--alt">HT</div>
+                <div>
+                  <h3>Hà Thu</h3>
+                  <p>★★★★★</p>
+                </div>
+              </div>
+              <p>
+                Những đề xuất sách cực kỳ hợp lý, như một người bạn đồng hành
+                trong đọc sách.
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="news-section section reveal">
+          <div class="section__header">
+            <h2>Tin tức thư viện</h2>
+          </div>
+          <div class="news-grid">
+            <article class="news-card glass-card">
+              <h3>Workshop đọc sách mùa hè</h3>
+              <p>Khám phá các hoạt động cùng chuyên gia</p>
+            </article>
+            <article class="news-card glass-card">
+              <h3>Triển lãm sách kỹ thuật số</h3>
+              <p>Những đầu sách mới trong tuần</p>
+            </article>
+            <article class="news-card glass-card">
+              <h3>Buổi nói chuyện về tư duy</h3>
+              <p>Tham gia sự kiện miễn phí</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="faq-section section reveal">
+          <div class="section__header">
+            <h2>FAQ</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item glass-card" open>
+              <summary>Thư viện có hỗ trợ mượn online không?</summary>
+              <p>
+                Có, bạn có thể mượn sách trực tuyến và nhận thông báo ngay khi
+                sách sẵn sàng.
+              </p>
+            </details>
+            <details class="faq-item glass-card">
+              <summary>Can I use it on mobile?</summary>
+              <p>Giao diện tối ưu trên cả desktop, tablet và điện thoại.</p>
+            </details>
+          </div>
+        </section>
+
+        <section class="newsletter-section section reveal">
+          <div class="newsletter-card glass-card">
+            <h2>Đăng ký nhận tin</h2>
+            <p>Nhận cập nhật sách mới, sự kiện và ưu đãi từ thư viện.</p>
+            <div class="newsletter-form">
+              <input type="email" placeholder="Email của bạn" />
+              <button class="btn btn--primary" type="button">Đăng ký</button>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer glass-card reveal">
+        <div class="footer-grid">
+          <div>
+            <h4>Thư viện thông minh</h4>
+            <p>
+              Không gian đọc sách hiện đại với gợi ý cá nhân hóa và công cụ quản
+              lý thông minh.
+            </p>
+          </div>
+          <div>
+            <h5>Điều hướng</h5>
+            <ul>
+              <li><a href="search.html">Tìm sách</a></li>
+              <li><a href="recommendation.html">Gợi ý</a></li>
+              <li><a href="borrow.html">Mượn sách</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Hỗ trợ</h5>
+            <ul>
+              <li><a href="reservation.html">Đặt trước</a></li>
+              <li><a href="profile.html">Hồ sơ</a></li>
+              <li><a href="report.html">Báo cáo</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Liên hệ</h5>
+            <ul>
+              <li>support@thuvien.vn</li>
+              <li>(028) 1234 5678</li>
+              <li>Mon–Sun · 07:00–22:00</li>
+            </ul>
+          </div>
+        </div>
+        <p style="margin-top: 16px; text-align: center">
+          © 2026 Thư viện thông minh. Mọi quyền được bảo lưu.
+        </p>
+      </footer>
+    </div>
+
+    <button class="back-to-top" id="backToTop" aria-label="Về đầu trang">
+      ↑
+    </button>
+    <div id="notificationContainer" class="notification-container"></div>
+    <script src="js/storage.js"></script>
+
+    <script src="js/loader.js"></script>
+    <script src="js/guard.js"></script>
+
+    <script src="js/theme.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

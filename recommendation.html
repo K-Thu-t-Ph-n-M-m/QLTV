@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gợi ý sách - Thư viện thông minh</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html" class="active">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <section
+          class="page-intro page-intro--recommendation glass-card reveal"
+        >
+          <p class="eyebrow">Gợi ý thông minh</p>
+          <h1>
+            Dựa trên lịch sử mượn và sở thích để đề xuất những cuốn sách phù hợp
+            nhất.
+          </h1>
+          <p>
+            Hệ thống tự động phân tích gu đọc sách của bạn theo thời gian thực.
+          </p>
+        </section>
+
+        <div class="content-grid">
+          <!-- CỘT TRÁI: DANH SÁCH GỢI Ý MƯỢN -->
+          <section
+            class="glass-card card-panel reveal"
+            data-page="recommendation"
+          >
+            <h3>Đề xuất cho bạn</h3>
+            <p
+              class="helper-text"
+              data-recommendation-explain
+              style="margin-bottom: 24px"
+            >
+              Hệ thống đang phân tích lịch sử đọc của bạn...
+            </p>
+            <div data-recommendation-list></div>
+          </section>
+
+          <!-- CỘT PHẢI: TRẠM CẢM HỨNG & DNA ĐỌC SÁCH -->
+          <div style="display: flex; flex-direction: column; gap: 24px">
+            <!-- Khung 1: Trạm cảm hứng -->
+            <section
+              class="glass-card card-panel reveal hover-float"
+              style="
+                background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+                color: white;
+                border: none;
+                position: relative;
+                overflow: hidden;
+                padding: 32px 24px;
+                box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+              "
+            >
+              <div
+                style="
+                  position: absolute;
+                  top: -50px;
+                  right: -50px;
+                  width: 150px;
+                  height: 150px;
+                  background: rgba(255, 255, 255, 0.2);
+                  border-radius: 50%;
+                  filter: blur(25px);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: -20px;
+                  left: -20px;
+                  width: 100px;
+                  height: 100px;
+                  background: rgba(255, 255, 255, 0.1);
+                  border-radius: 50%;
+                  filter: blur(15px);
+                "
+              ></div>
+
+              <div style="position: relative; z-index: 2">
+                <span
+                  style="
+                    background: rgba(255, 255, 255, 0.2);
+                    padding: 6px 14px;
+                    border-radius: 20px;
+                    font-size: 0.8rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    backdrop-filter: blur(5px);
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+                  "
+                  >✨ Trạm Cảm Hứng</span
+                >
+                <h3
+                  style="
+                    color: white;
+                    font-size: 1.5rem;
+                    margin: 24px 0 16px;
+                    line-height: 1.5;
+                    font-weight: 800;
+                    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                  "
+                >
+                  "Việc đọc rất quan trọng. Nếu bạn biết cách đọc, cả thế giới
+                  sẽ mở ra cho bạn."
+                </h3>
+                <p
+                  style="
+                    color: rgba(255, 255, 255, 0.9);
+                    font-size: 0.95rem;
+                    font-style: italic;
+                    margin-bottom: 28px;
+                    font-weight: 500;
+                  "
+                >
+                  — Barack Obama
+                </p>
+
+                <div
+                  style="
+                    background: rgba(0, 0, 0, 0.2);
+                    padding: 16px;
+                    border-radius: 12px;
+                    backdrop-filter: blur(10px);
+                    border: 1px solid rgba(255, 255, 255, 0.1);
+                  "
+                >
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      margin-bottom: 8px;
+                      font-size: 0.85rem;
+                      font-weight: 600;
+                    "
+                  >
+                    <span>Mục tiêu đọc tháng này</span>
+                    <span id="readingGoalProgressText">0 / 10 cuốn</span>
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 6px;
+                      background: rgba(255, 255, 255, 0.2);
+                      border-radius: 10px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      id="readingGoalProgressBar"
+                      style="
+                        width: 0%;
+                        height: 100%;
+                        background: #fff;
+                        border-radius: 10px;
+                        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+                        transition: width 1s ease-in-out;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- Khung 2: DNA Đọc sách -->
+            <section
+              class="glass-card card-panel reveal hover-float"
+              style="padding: 24px; border-radius: 16px"
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 20px;
+                "
+              >
+                <h3
+                  style="
+                    margin: 0;
+                    font-size: 1.15rem;
+                    color: var(--text-color, #111827);
+                  "
+                >
+                  🧬 DNA Đọc Sách
+                </h3>
+                <span
+                  style="
+                    font-size: 1.2rem;
+                    background: rgba(59, 130, 246, 0.1);
+                    padding: 8px;
+                    border-radius: 10px;
+                  "
+                  >📊</span
+                >
+              </div>
+              <p
+                style="
+                  font-size: 0.9rem;
+                  color: #6b7280;
+                  margin-bottom: 24px;
+                  line-height: 1.5;
+                "
+              >
+                Phong cách đọc của bạn được định hình bởi những tác phẩm gần đây
+                nhất.
+              </p>
+
+              <!-- Nơi chèn biểu đồ tự động bằng JS -->
+              <div
+                id="dnaChartContainer"
+                style="display: flex; flex-direction: column; gap: 18px"
+              ></div>
+
+              <button
+                class="btn btn--ghost"
+                style="
+                  width: 100%;
+                  margin-top: 28px;
+                  justify-content: center;
+                  border: 1px dashed #d1d5db;
+                  color: #6b7280;
+                  font-weight: 500;
+                "
+                onclick="window.location.href = 'profile.html'"
+              >
+                Xem báo cáo chi tiết cá nhân
+              </button>
+            </section>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/recommendation.js"></script>
+
+    <script>
+      requireLogin();
+    </script>
+  </body>
+</html>

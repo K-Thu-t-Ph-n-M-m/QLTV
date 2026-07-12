@@ -1,0 +1,1652 @@
+[
+  {
+    "id": 1,
+    "name": "Bùi Anh Tuấn",
+    "role": "Thủ thư",
+    "email": "tuan.bui@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Thành viên 2",
+    "role": "Độc giả",
+    "email": "user2@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Thành viên 3",
+    "role": "Độc giả",
+    "email": "user3@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Thành viên 4",
+    "role": "Độc giả",
+    "email": "user4@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Thành viên 5",
+    "role": "Độc giả",
+    "email": "user5@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Thành viên 6",
+    "role": "Độc giả",
+    "email": "user6@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Thành viên 7",
+    "role": "Độc giả",
+    "email": "user7@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Thành viên 8",
+    "role": "Độc giả",
+    "email": "user8@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Thành viên 9",
+    "role": "Độc giả",
+    "email": "user9@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Thành viên 10",
+    "role": "Độc giả",
+    "email": "user10@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Thành viên 11",
+    "role": "Độc giả",
+    "email": "user11@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Thành viên 12",
+    "role": "Độc giả",
+    "email": "user12@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Thành viên 13",
+    "role": "Độc giả",
+    "email": "user13@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Thành viên 14",
+    "role": "Độc giả",
+    "email": "user14@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Thành viên 15",
+    "role": "Thủ thư",
+    "email": "user15@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Thành viên 16",
+    "role": "Độc giả",
+    "email": "user16@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 17,
+    "name": "Thành viên 17",
+    "role": "Độc giả",
+    "email": "user17@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 18,
+    "name": "Thành viên 18",
+    "role": "Độc giả",
+    "email": "user18@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 19,
+    "name": "Thành viên 19",
+    "role": "Độc giả",
+    "email": "user19@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 20,
+    "name": "Thành viên 20",
+    "role": "Độc giả",
+    "email": "user20@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 21,
+    "name": "Thành viên 21",
+    "role": "Độc giả",
+    "email": "user21@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 22,
+    "name": "Thành viên 22",
+    "role": "Độc giả",
+    "email": "user22@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 23,
+    "name": "Thành viên 23",
+    "role": "Độc giả",
+    "email": "user23@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 24,
+    "name": "Thành viên 24",
+    "role": "Độc giả",
+    "email": "user24@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 25,
+    "name": "Thành viên 25",
+    "role": "Độc giả",
+    "email": "user25@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 26,
+    "name": "Thành viên 26",
+    "role": "Độc giả",
+    "email": "user26@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 27,
+    "name": "Thành viên 27",
+    "role": "Độc giả",
+    "email": "user27@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 28,
+    "name": "Thành viên 28",
+    "role": "Độc giả",
+    "email": "user28@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 29,
+    "name": "Thành viên 29",
+    "role": "Độc giả",
+    "email": "user29@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 30,
+    "name": "Thành viên 30",
+    "role": "Thủ thư",
+    "email": "user30@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 31,
+    "name": "Thành viên 31",
+    "role": "Độc giả",
+    "email": "user31@email.com",
+    "borrowed": 12,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 32,
+    "name": "Thành viên 32",
+    "role": "Độc giả",
+    "email": "user32@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 33,
+    "name": "Thành viên 33",
+    "role": "Độc giả",
+    "email": "user33@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 34,
+    "name": "Thành viên 34",
+    "role": "Độc giả",
+    "email": "user34@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 35,
+    "name": "Thành viên 35",
+    "role": "Độc giả",
+    "email": "user35@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 36,
+    "name": "Thành viên 36",
+    "role": "Độc giả",
+    "email": "user36@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 37,
+    "name": "Thành viên 37",
+    "role": "Độc giả",
+    "email": "user37@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 38,
+    "name": "Thành viên 38",
+    "role": "Độc giả",
+    "email": "user38@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 39,
+    "name": "Thành viên 39",
+    "role": "Độc giả",
+    "email": "user39@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 40,
+    "name": "Thành viên 40",
+    "role": "Độc giả",
+    "email": "user40@email.com",
+    "borrowed": 12,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 41,
+    "name": "Thành viên 41",
+    "role": "Độc giả",
+    "email": "user41@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 42,
+    "name": "Thành viên 42",
+    "role": "Độc giả",
+    "email": "user42@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 43,
+    "name": "Thành viên 43",
+    "role": "Độc giả",
+    "email": "user43@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 44,
+    "name": "Thành viên 44",
+    "role": "Độc giả",
+    "email": "user44@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 45,
+    "name": "Thành viên 45",
+    "role": "Thủ thư",
+    "email": "user45@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 46,
+    "name": "Thành viên 46",
+    "role": "Độc giả",
+    "email": "user46@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 47,
+    "name": "Thành viên 47",
+    "role": "Độc giả",
+    "email": "user47@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 48,
+    "name": "Thành viên 48",
+    "role": "Độc giả",
+    "email": "user48@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 49,
+    "name": "Thành viên 49",
+    "role": "Độc giả",
+    "email": "user49@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 50,
+    "name": "Thành viên 50",
+    "role": "Độc giả",
+    "email": "user50@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 51,
+    "name": "Thành viên 51",
+    "role": "Độc giả",
+    "email": "user51@email.com",
+    "borrowed": 12,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 52,
+    "name": "Thành viên 52",
+    "role": "Độc giả",
+    "email": "user52@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 53,
+    "name": "Thành viên 53",
+    "role": "Độc giả",
+    "email": "user53@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 54,
+    "name": "Thành viên 54",
+    "role": "Độc giả",
+    "email": "user54@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 55,
+    "name": "Thành viên 55",
+    "role": "Độc giả",
+    "email": "user55@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 56,
+    "name": "Thành viên 56",
+    "role": "Độc giả",
+    "email": "user56@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 57,
+    "name": "Thành viên 57",
+    "role": "Độc giả",
+    "email": "user57@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 58,
+    "name": "Thành viên 58",
+    "role": "Độc giả",
+    "email": "user58@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 59,
+    "name": "Thành viên 59",
+    "role": "Độc giả",
+    "email": "user59@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 60,
+    "name": "Thành viên 60",
+    "role": "Thủ thư",
+    "email": "user60@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 61,
+    "name": "Thành viên 61",
+    "role": "Độc giả",
+    "email": "user61@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 62,
+    "name": "Thành viên 62",
+    "role": "Độc giả",
+    "email": "user62@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 63,
+    "name": "Thành viên 63",
+    "role": "Độc giả",
+    "email": "user63@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 64,
+    "name": "Thành viên 64",
+    "role": "Độc giả",
+    "email": "user64@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 65,
+    "name": "Thành viên 65",
+    "role": "Độc giả",
+    "email": "user65@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 66,
+    "name": "Thành viên 66",
+    "role": "Độc giả",
+    "email": "user66@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 67,
+    "name": "Thành viên 67",
+    "role": "Độc giả",
+    "email": "user67@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 68,
+    "name": "Thành viên 68",
+    "role": "Độc giả",
+    "email": "user68@email.com",
+    "borrowed": 12,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 69,
+    "name": "Thành viên 69",
+    "role": "Độc giả",
+    "email": "user69@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 70,
+    "name": "Thành viên 70",
+    "role": "Độc giả",
+    "email": "user70@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 71,
+    "name": "Thành viên 71",
+    "role": "Độc giả",
+    "email": "user71@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 72,
+    "name": "Thành viên 72",
+    "role": "Độc giả",
+    "email": "user72@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 73,
+    "name": "Thành viên 73",
+    "role": "Độc giả",
+    "email": "user73@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 74,
+    "name": "Thành viên 74",
+    "role": "Độc giả",
+    "email": "user74@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 75,
+    "name": "Thành viên 75",
+    "role": "Thủ thư",
+    "email": "user75@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 76,
+    "name": "Thành viên 76",
+    "role": "Độc giả",
+    "email": "user76@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 77,
+    "name": "Thành viên 77",
+    "role": "Độc giả",
+    "email": "user77@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 78,
+    "name": "Thành viên 78",
+    "role": "Độc giả",
+    "email": "user78@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 79,
+    "name": "Thành viên 79",
+    "role": "Độc giả",
+    "email": "user79@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 80,
+    "name": "Thành viên 80",
+    "role": "Độc giả",
+    "email": "user80@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 81,
+    "name": "Thành viên 81",
+    "role": "Độc giả",
+    "email": "user81@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 82,
+    "name": "Thành viên 82",
+    "role": "Độc giả",
+    "email": "user82@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 83,
+    "name": "Thành viên 83",
+    "role": "Độc giả",
+    "email": "user83@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 84,
+    "name": "Thành viên 84",
+    "role": "Độc giả",
+    "email": "user84@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 85,
+    "name": "Thành viên 85",
+    "role": "Độc giả",
+    "email": "user85@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 86,
+    "name": "Thành viên 86",
+    "role": "Độc giả",
+    "email": "user86@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 87,
+    "name": "Thành viên 87",
+    "role": "Độc giả",
+    "email": "user87@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 88,
+    "name": "Thành viên 88",
+    "role": "Độc giả",
+    "email": "user88@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 89,
+    "name": "Thành viên 89",
+    "role": "Độc giả",
+    "email": "user89@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 90,
+    "name": "Thành viên 90",
+    "role": "Thủ thư",
+    "email": "user90@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 91,
+    "name": "Thành viên 91",
+    "role": "Độc giả",
+    "email": "user91@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 92,
+    "name": "Thành viên 92",
+    "role": "Độc giả",
+    "email": "user92@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 93,
+    "name": "Thành viên 93",
+    "role": "Độc giả",
+    "email": "user93@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 94,
+    "name": "Thành viên 94",
+    "role": "Độc giả",
+    "email": "user94@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 95,
+    "name": "Thành viên 95",
+    "role": "Độc giả",
+    "email": "user95@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 96,
+    "name": "Thành viên 96",
+    "role": "Độc giả",
+    "email": "user96@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 97,
+    "name": "Thành viên 97",
+    "role": "Độc giả",
+    "email": "user97@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 98,
+    "name": "Thành viên 98",
+    "role": "Độc giả",
+    "email": "user98@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 99,
+    "name": "Thành viên 99",
+    "role": "Độc giả",
+    "email": "user99@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 100,
+    "name": "Thành viên 100",
+    "role": "Độc giả",
+    "email": "user100@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 101,
+    "name": "Thành viên 101",
+    "role": "Độc giả",
+    "email": "user101@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 102,
+    "name": "Thành viên 102",
+    "role": "Độc giả",
+    "email": "user102@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 103,
+    "name": "Thành viên 103",
+    "role": "Độc giả",
+    "email": "user103@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 104,
+    "name": "Thành viên 104",
+    "role": "Độc giả",
+    "email": "user104@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 105,
+    "name": "Thành viên 105",
+    "role": "Thủ thư",
+    "email": "user105@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 106,
+    "name": "Thành viên 106",
+    "role": "Độc giả",
+    "email": "user106@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 107,
+    "name": "Thành viên 107",
+    "role": "Độc giả",
+    "email": "user107@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Thành viên 108",
+    "role": "Độc giả",
+    "email": "user108@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Thành viên 109",
+    "role": "Độc giả",
+    "email": "user109@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Thành viên 110",
+    "role": "Độc giả",
+    "email": "user110@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Thành viên 111",
+    "role": "Độc giả",
+    "email": "user111@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Thành viên 112",
+    "role": "Độc giả",
+    "email": "user112@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 113,
+    "name": "Thành viên 113",
+    "role": "Độc giả",
+    "email": "user113@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 114,
+    "name": "Thành viên 114",
+    "role": "Độc giả",
+    "email": "user114@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 115,
+    "name": "Thành viên 115",
+    "role": "Độc giả",
+    "email": "user115@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 116,
+    "name": "Thành viên 116",
+    "role": "Độc giả",
+    "email": "user116@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 117,
+    "name": "Thành viên 117",
+    "role": "Độc giả",
+    "email": "user117@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 118,
+    "name": "Thành viên 118",
+    "role": "Độc giả",
+    "email": "user118@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 119,
+    "name": "Thành viên 119",
+    "role": "Độc giả",
+    "email": "user119@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 120,
+    "name": "Thành viên 120",
+    "role": "Thủ thư",
+    "email": "user120@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 121,
+    "name": "Thành viên 121",
+    "role": "Độc giả",
+    "email": "user121@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 122,
+    "name": "Thành viên 122",
+    "role": "Độc giả",
+    "email": "user122@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 123,
+    "name": "Thành viên 123",
+    "role": "Độc giả",
+    "email": "user123@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 124,
+    "name": "Thành viên 124",
+    "role": "Độc giả",
+    "email": "user124@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 125,
+    "name": "Thành viên 125",
+    "role": "Độc giả",
+    "email": "user125@email.com",
+    "borrowed": 5,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 126,
+    "name": "Thành viên 126",
+    "role": "Độc giả",
+    "email": "user126@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 127,
+    "name": "Thành viên 127",
+    "role": "Độc giả",
+    "email": "user127@email.com",
+    "borrowed": 13,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 128,
+    "name": "Thành viên 128",
+    "role": "Độc giả",
+    "email": "user128@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 129,
+    "name": "Thành viên 129",
+    "role": "Độc giả",
+    "email": "user129@email.com",
+    "borrowed": 9,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 130,
+    "name": "Thành viên 130",
+    "role": "Độc giả",
+    "email": "user130@email.com",
+    "borrowed": 8,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 131,
+    "name": "Thành viên 131",
+    "role": "Độc giả",
+    "email": "user131@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 132,
+    "name": "Thành viên 132",
+    "role": "Độc giả",
+    "email": "user132@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 133,
+    "name": "Thành viên 133",
+    "role": "Độc giả",
+    "email": "user133@email.com",
+    "borrowed": 11,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 134,
+    "name": "Thành viên 134",
+    "role": "Độc giả",
+    "email": "user134@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 135,
+    "name": "Thành viên 135",
+    "role": "Thủ thư",
+    "email": "user135@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 136,
+    "name": "Thành viên 136",
+    "role": "Độc giả",
+    "email": "user136@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 137,
+    "name": "Thành viên 137",
+    "role": "Độc giả",
+    "email": "user137@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 138,
+    "name": "Thành viên 138",
+    "role": "Độc giả",
+    "email": "user138@email.com",
+    "borrowed": 14,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 139,
+    "name": "Thành viên 139",
+    "role": "Độc giả",
+    "email": "user139@email.com",
+    "borrowed": 12,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 140,
+    "name": "Thành viên 140",
+    "role": "Độc giả",
+    "email": "user140@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 141,
+    "name": "Thành viên 141",
+    "role": "Độc giả",
+    "email": "user141@email.com",
+    "borrowed": 3,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 142,
+    "name": "Thành viên 142",
+    "role": "Độc giả",
+    "email": "user142@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 143,
+    "name": "Thành viên 143",
+    "role": "Độc giả",
+    "email": "user143@email.com",
+    "borrowed": 10,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 144,
+    "name": "Thành viên 144",
+    "role": "Độc giả",
+    "email": "user144@email.com",
+    "borrowed": 4,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  },
+  {
+    "id": 145,
+    "name": "Thành viên 145",
+    "role": "Độc giả",
+    "email": "user145@email.com",
+    "borrowed": 1,
+    "favoriteGenres": [
+      "Khoa học",
+      "Kinh doanh"
+    ]
+  },
+  {
+    "id": 146,
+    "name": "Thành viên 146",
+    "role": "Độc giả",
+    "email": "user146@email.com",
+    "borrowed": 2,
+    "favoriteGenres": [
+      "Văn học",
+      "Nghệ thuật"
+    ]
+  },
+  {
+    "id": 147,
+    "name": "Thành viên 147",
+    "role": "Độc giả",
+    "email": "user147@email.com",
+    "borrowed": 7,
+    "favoriteGenres": [
+      "Kinh doanh",
+      "Viễn tưởng"
+    ]
+  },
+  {
+    "id": 148,
+    "name": "Thành viên 148",
+    "role": "Độc giả",
+    "email": "user148@email.com",
+    "borrowed": 0,
+    "favoriteGenres": [
+      "Nghệ thuật",
+      "Công nghệ"
+    ]
+  },
+  {
+    "id": 149,
+    "name": "Thành viên 149",
+    "role": "Độc giả",
+    "email": "user149@email.com",
+    "borrowed": 6,
+    "favoriteGenres": [
+      "Viễn tưởng",
+      "Khoa học"
+    ]
+  },
+  {
+    "id": 150,
+    "name": "Thành viên 150",
+    "role": "Thủ thư",
+    "email": "user150@email.com",
+    "borrowed": 12,
+    "favoriteGenres": [
+      "Công nghệ",
+      "Văn học"
+    ]
+  }
+]

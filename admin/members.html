@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý thành viên - Thư viện thông minh</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/light.css" />
+    <link rel="stylesheet" href="../css/dark.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="admin-header"></div>
+
+      <main class="admin-layout">
+        <div id="admin-sidebar"></div>
+
+        <section class="glass-card admin-content">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 24px;
+            "
+          >
+            <div>
+              <h1>Quản lý thành viên</h1>
+              <p>
+                Quản lý vai trò, thông tin và quyền truy cập của độc giả và thủ
+                thư.
+              </p>
+            </div>
+            <!-- Đã thêm sự kiện onclick để mở form thêm người -->
+            <button class="btn btn--primary" onclick="openAddModal()">
+              Thêm thành viên
+            </button>
+          </div>
+
+          <!-- Khung chứa danh sách thành viên -->
+          <div
+            id="adminMemberList"
+            style="display: flex; flex-direction: column; gap: 12px"
+          >
+            <!-- Render tự động vào đây -->
+          </div>
+        </section>
+      </main>
+
+      <div id="admin-footer"></div>
+    </div>
+
+    <!-- Modal Thêm/Sửa thành viên (Cửa sổ nổi) -->
+    <div
+      id="memberModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      "
+    >
+      <div
+        class="glass-card"
+        style="
+          width: 100%;
+          max-width: 400px;
+          padding: 24px;
+          background: var(--surface-color, #ffffff);
+          border-radius: 12px;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h3 id="modalTitle" style="margin-bottom: 16px; font-size: 1.25rem">
+          Thêm thành viên
+        </h3>
+        <input type="hidden" id="memberId" />
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Tên thành viên</label
+          >
+          <input
+            type="text"
+            id="memberName"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+            "
+            placeholder="Nhập họ và tên..."
+            required
+          />
+        </div>
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Email</label
+          >
+          <input
+            type="email"
+            id="memberEmail"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+            "
+            placeholder="Ví dụ: name@email.com"
+            required
+          />
+        </div>
+
+        <div style="margin-bottom: 24px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Vai trò</label
+          >
+          <select
+            id="memberRole"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+              background: white;
+            "
+          >
+            <option value="Độc giả">Độc giả</option>
+            <option value="Thủ thư">Thủ thư</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 12px">
+          <button class="btn btn--ghost" onclick="closeModal()">Hủy bỏ</button>
+          <button class="btn btn--primary" onclick="saveMember()">
+            Lưu thông tin
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/notification.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/components.js"></script>
+
+    <!-- Script xử lý Logic -->
+    <script>
+      requireAdmin();
+      let usersData = [];
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          if (typeof DataLoader !== "undefined") await DataLoader.initialize();
+        } catch (error) {}
+
+        usersData = Storage.getUsers() || [];
+        renderMembers();
+
+        // SỬA LỖI THEME TOGGLE: Bắt sự kiện click toàn cục
+        document.addEventListener("click", (e) => {
+          if (
+            e.target.closest(".theme-toggle") ||
+            e.target.closest("#themeToggle")
+          ) {
+            const currentTheme =
+              document.body.getAttribute("data-theme") || "light";
+            const nextTheme = currentTheme === "dark" ? "light" : "dark";
+
+            document.body.setAttribute("data-theme", nextTheme);
+            Storage.saveTheme(nextTheme);
+
+            // Đổi icon cho tất cả các nút toggle có trên màn hình
+            document
+              .querySelectorAll(".theme-toggle, #themeToggle")
+              .forEach((btn) => {
+                btn.textContent = nextTheme === "dark" ? "☀️" : "🌙";
+              });
+          }
+        });
+      });
+
+      // Hàm vẽ lại danh sách
+      function renderMembers() {
+        const memberList = document.getElementById("adminMemberList");
+        if (usersData.length === 0) {
+          memberList.innerHTML =
+            '<div style="text-align: center; padding: 40px;">Chưa có dữ liệu thành viên!</div>';
+          return;
+        }
+
+        memberList.innerHTML = usersData
+          .map((user) => {
+            const roleColor =
+              user.role === "admin" || user.role === "Thủ thư"
+                ? "#10b981"
+                : "#3b82f6";
+            const roleBg =
+              user.role === "admin" || user.role === "Thủ thư"
+                ? "#d1fae5"
+                : "#dbeafe";
+            const displayName =
+              user.name || user.fullName || "Người dùng ẩn danh";
+
+            return `
+            <div class="list-item" style="display: flex; justify-content: space-between; align-items: center; padding: 16px; border-bottom: 1px solid #e5e7eb;">
+              <div style="display: flex; align-items: center; gap: 16px;">
+                <img src="${user.avatar || "https://ui-avatars.com/api/?name=" + encodeURIComponent(displayName) + "&background=random"}" alt="Avatar" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+                <div>
+                  <strong style="font-size: 1.1rem; display: block; margin-bottom: 4px; color: var(--text-color, #111827);">${displayName}</strong>
+                  <p style="margin: 0; font-size: 0.9rem; color: #6b7280;">
+                    Email: ${user.email} &nbsp;&bull;&nbsp; Đang mượn: <b>${user.borrowed || 0}</b> cuốn
+                  </p>
+                </div>
+              </div>
+              <div style="text-align: right; display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+                <span class="status-pill active" style="background: ${roleBg}; color: ${roleColor}; padding: 4px 10px; border-radius: 6px; font-size: 0.85rem; font-weight: 500;">
+                  ${user.role}
+                </span>
+                <div style="display: flex; gap: 8px;">
+                  <button class="btn btn--ghost" style="padding: 6px 12px; font-size: 0.85rem;" onclick="openEditModal('${user.id}')">Sửa</button>
+                  ${user.role !== "admin" ? `<button class="btn btn--ghost" style="padding: 6px 12px; font-size: 0.85rem; color: #ef4444;" onclick="deleteMember('${user.id}')">Xóa</button>` : ""}
+                </div>
+              </div>
+            </div>
+            `;
+          })
+          .join("");
+      }
+
+      // Xóa thành viên
+      function deleteMember(id) {
+        if (
+          confirm("Bạn có chắc chắn muốn xóa thành viên này khỏi hệ thống?")
+        ) {
+          usersData = usersData.filter((u) => String(u.id) !== String(id));
+          Storage.saveUsers(usersData);
+          renderMembers();
+          showNotification("Đã xóa thành viên thành công!", "success");
+        }
+      }
+
+      // Đóng / Mở Modal
+      function openModal() {
+        document.getElementById("memberModal").style.display = "flex";
+      }
+      function closeModal() {
+        document.getElementById("memberModal").style.display = "none";
+        // Xóa trắng form
+        document.getElementById("memberId").value = "";
+        document.getElementById("memberName").value = "";
+        document.getElementById("memberEmail").value = "";
+      }
+
+      // Bấm nút Thêm
+      function openAddModal() {
+        closeModal();
+        document.getElementById("modalTitle").textContent =
+          "Thêm thành viên mới";
+        openModal();
+      }
+
+      // Bấm nút Sửa
+      function openEditModal(id) {
+        const user = usersData.find((u) => String(u.id) === String(id));
+        if (!user) return;
+
+        document.getElementById("modalTitle").textContent =
+          "Chỉnh sửa thông tin";
+        document.getElementById("memberId").value = user.id;
+        document.getElementById("memberName").value =
+          user.name || user.fullName || "";
+        document.getElementById("memberEmail").value = user.email || "";
+        document.getElementById("memberRole").value =
+          user.role === "admin" ? "Thủ thư" : user.role;
+        openModal();
+      }
+
+      // Lưu dữ liệu (Xử lý cả Thêm và Sửa)
+      function saveMember() {
+        const id = document.getElementById("memberId").value;
+        const name = document.getElementById("memberName").value.trim();
+        const email = document.getElementById("memberEmail").value.trim();
+        const role = document.getElementById("memberRole").value;
+
+        if (!name || !email) {
+          alert("Vui lòng nhập đầy đủ Tên và Email!");
+          return;
+        }
+
+        if (id) {
+          // Cập nhật người cũ
+          const index = usersData.findIndex((u) => String(u.id) === String(id));
+          if (index !== -1) {
+            usersData[index].name = name;
+            usersData[index].fullName = name;
+            usersData[index].email = email;
+            if (usersData[index].role !== "admin") {
+              usersData[index].role = role;
+            }
+          }
+          showNotification("Cập nhật thành công!", "success");
+        } else {
+          // Thêm người mới
+          const newUser = {
+            id: Date.now().toString(),
+            name: name,
+            fullName: name,
+            email: email,
+            role: role,
+            borrowed: 0,
+            favoriteGenres: [],
+            avatar:
+              "https://ui-avatars.com/api/?name=" +
+              encodeURIComponent(name) +
+              "&background=random",
+          };
+          usersData.splice(1, 0, newUser); // Chèn lên đầu danh sách (ngay dưới Admin)
+          showNotification("Đã thêm thành viên mới!", "success");
+        }
+
+        Storage.saveUsers(usersData);
+        renderMembers();
+        closeModal();
+      }
+    </script>
+  </body>
+</html>

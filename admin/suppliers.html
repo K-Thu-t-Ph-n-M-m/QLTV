@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nhà cung cấp - Thư viện thông minh</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/light.css" />
+    <link rel="stylesheet" href="../css/dark.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="admin-header"></div>
+      <main class="admin-layout">
+        <div id="admin-sidebar"></div>
+        <section class="glass-card admin-content">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 24px;
+            "
+          >
+            <div>
+              <h1>Nhà cung cấp</h1>
+              <p>Quản lý đối tác và số lượng sách đã nhập.</p>
+            </div>
+            <button class="btn btn--primary" onclick="openAddModal()">
+              Thêm nhà cung cấp
+            </button>
+          </div>
+          <div
+            id="adminSupplierList"
+            style="display: flex; flex-direction: column; gap: 12px"
+          ></div>
+        </section>
+      </main>
+      <div id="admin-footer"></div>
+    </div>
+
+    <!-- Modal Thêm/Sửa NCC -->
+    <div
+      id="supplierModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      "
+    >
+      <div
+        class="glass-card"
+        style="
+          width: 100%;
+          max-width: 400px;
+          padding: 24px;
+          background: var(--surface-color, #ffffff);
+          border-radius: 12px;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h3 id="modalTitle" style="margin-bottom: 16px; font-size: 1.25rem">
+          Thêm nhà cung cấp
+        </h3>
+        <input type="hidden" id="supId" />
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Tên đối tác</label
+          >
+          <input
+            type="text"
+            id="supName"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+            "
+            placeholder="Nhập tên..."
+            required
+          />
+        </div>
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Email liên hệ</label
+          >
+          <input
+            type="email"
+            id="supContact"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+            "
+            placeholder="Nhập email..."
+            required
+          />
+        </div>
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Trạng thái hợp tác</label
+          >
+          <select
+            id="supStatus"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+              background: white;
+            "
+          >
+            <option value="Đang hợp tác">Đang hợp tác</option>
+            <option value="Cần theo dõi">Cần theo dõi</option>
+            <option value="Ngừng hợp tác">Ngừng hợp tác</option>
+          </select>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+          "
+        >
+          <button class="btn btn--ghost" onclick="closeModal()">Hủy bỏ</button>
+          <button class="btn btn--primary" onclick="saveSupplier()">
+            Lưu thông tin
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/notification.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/components.js"></script>
+
+    <script>
+      requireAdmin();
+      let suppliersData = [];
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          if (typeof DataLoader !== "undefined") await DataLoader.initialize();
+        } catch (e) {}
+        suppliersData = Storage.getSuppliers() || [];
+        renderSuppliers();
+      });
+
+      function renderSuppliers() {
+        const list = document.getElementById("adminSupplierList");
+        if (suppliersData.length === 0) {
+          list.innerHTML =
+            '<p class="empty-state">Chưa có dữ liệu nhà cung cấp.</p>';
+          return;
+        }
+
+        list.innerHTML = suppliersData
+          .map((s) => {
+            let color =
+              s.status === "Đang hợp tác"
+                ? "#10b981"
+                : s.status === "Cần theo dõi"
+                  ? "#f59e0b"
+                  : "#ef4444";
+            let bg =
+              s.status === "Đang hợp tác"
+                ? "#d1fae5"
+                : s.status === "Cần theo dõi"
+                  ? "#fef3c7"
+                  : "#fee2e2";
+            return `
+             <div class="list-item" style="display:flex; justify-content:space-between; align-items:center; padding:16px; border-bottom:1px solid #e5e7eb;">
+                <div>
+                    <strong style="font-size: 1.1rem; color: var(--text-color, #111827);">${s.name}</strong>
+                    <p style="margin:4px 0 0; font-size:0.9rem; color:#6b7280;">Email liên hệ: ${s.contact} • Tổng sách đã giao: <b>${s.booksDelivered || 0}</b> cuốn</p>
+                </div>
+                <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <span class="status-pill" style="background:${bg}; color:${color}; padding:4px 10px; border-radius:6px; font-size:0.85rem;">${s.status}</span>
+                    <button class="btn btn--ghost" style="padding: 6px 12px; font-size: 0.85rem;" onclick="openEditModal('${s.id}')">Sửa trạng thái</button>
+                </div>
+             </div>
+             `;
+          })
+          .join("");
+      }
+
+      function openModal() {
+        document.getElementById("supplierModal").style.display = "flex";
+      }
+      function closeModal() {
+        document.getElementById("supplierModal").style.display = "none";
+        document.getElementById("supId").value = "";
+        document.getElementById("supName").value = "";
+        document.getElementById("supContact").value = "";
+      }
+
+      function openAddModal() {
+        closeModal();
+        document.getElementById("modalTitle").textContent = "Thêm nhà cung cấp";
+        openModal();
+      }
+
+      function openEditModal(id) {
+        const sup = suppliersData.find((s) => String(s.id) === String(id));
+        if (!sup) return;
+
+        document.getElementById("modalTitle").textContent =
+          "Chỉnh sửa thông tin";
+        document.getElementById("supId").value = sup.id;
+        document.getElementById("supName").value = sup.name;
+        document.getElementById("supContact").value = sup.contact;
+        document.getElementById("supStatus").value =
+          sup.status === "Tạm dừng" ? "Ngừng hợp tác" : sup.status;
+        openModal();
+      }
+
+      function saveSupplier() {
+        const id = document.getElementById("supId").value;
+        const name = document.getElementById("supName").value.trim();
+        const contact = document.getElementById("supContact").value.trim();
+        const status = document.getElementById("supStatus").value;
+
+        if (!name || !contact) {
+          alert("Vui lòng nhập Tên và Email liên hệ!");
+          return;
+        }
+
+        if (id) {
+          const index = suppliersData.findIndex(
+            (s) => String(s.id) === String(id),
+          );
+          if (index !== -1) {
+            suppliersData[index].name = name;
+            suppliersData[index].contact = contact;
+            suppliersData[index].status = status;
+          }
+          showNotification("Cập nhật thành công!", "success");
+        } else {
+          suppliersData.unshift({
+            id: Date.now().toString(),
+            name: name,
+            contact: contact,
+            booksDelivered: 0,
+            status: status,
+          });
+          showNotification("Đã thêm nhà cung cấp mới!", "success");
+        }
+
+        Storage.saveSuppliers(suppliersData);
+        renderSuppliers();
+        closeModal();
+      }
+    </script>
+  </body>
+</html>

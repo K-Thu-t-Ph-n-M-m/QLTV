@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tìm kiếm sách</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="page-intro page-intro--search glass-card reveal">
+          <p class="eyebrow">Tìm kiếm</p>
+          <h1>
+            Tra cứu sách theo từ khóa, tác giả, thể loại, ISBN hoặc năm xuất
+            bản.
+          </h1>
+          <p>
+            Hệ thống hỗ trợ lọc sắp xếp và tìm kiếm nhanh trong kho dữ liệu thư
+            viện.
+          </p>
+        </section>
+
+        <section class="glass-card card-panel reveal" data-page="search">
+          <div class="inline-row">
+            <input
+              data-search-input
+              type="text"
+              placeholder="Nhập tên sách, tác giả hoặc ISBN"
+            />
+            <button class="btn btn--primary" type="button" data-search-button>
+              Tìm kiếm
+            </button>
+          </div>
+          <div class="filter-row">
+            <div class="chip-group" data-search-categories></div>
+            <select class="filter-select" data-search-sort>
+              <option value="default">Sắp xếp mặc định</option>
+              <option value="availability">Nhiều bản có sẵn nhất</option>
+              <option value="rating">Đánh giá cao nhất</option>
+            </select>
+          </div>
+          <p class="helper-text" data-search-summary>
+            Nhập từ khóa để bắt đầu tra cứu.
+          </p>
+          <p class="helper-text" data-recent-searches></p>
+          <div class="results-grid" data-search-results></div>
+        </section>
+      </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/search.js"></script>
+  </body>
+</html>

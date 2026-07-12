@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bảng điều khiển - Thư viện thông minh</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/light.css" />
+    <link rel="stylesheet" href="../css/dark.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      .animate-fade-up {
+        animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      .delay-1 {
+        animation-delay: 0.1s;
+      }
+      .delay-2 {
+        animation-delay: 0.2s;
+      }
+      .delay-3 {
+        animation-delay: 0.3s;
+      }
+      .delay-4 {
+        animation-delay: 0.4s;
+      }
+      .delay-5 {
+        animation-delay: 0.5s;
+      }
+
+      @keyframes fadeInUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hover-float {
+        transition: all 0.3s ease;
+      }
+      .hover-float:hover {
+        transform: translateY(-6px);
+        box-shadow:
+          0 20px 25px -5px rgba(0, 0, 0, 0.1),
+          0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      }
+
+      .hero-mesh {
+        background:
+          radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+          radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+          radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+        background-color: #111827;
+        color: white;
+        overflow: hidden;
+        position: relative;
+      }
+      .hero-mesh::before {
+        content: "";
+        position: absolute;
+        top: -50px;
+        right: -50px;
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(
+          135deg,
+          rgba(236, 72, 153, 0.3),
+          rgba(59, 130, 246, 0.3)
+        );
+        border-radius: 50%;
+        filter: blur(40px);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="admin-header"></div>
+
+      <main class="admin-layout">
+        <div id="admin-sidebar"></div>
+
+        <section
+          class="admin-content"
+          style="background: transparent; box-shadow: none; padding: 0"
+        >
+          <!-- Khu vực Hero -->
+          <div
+            class="hero-mesh animate-fade-up"
+            id="heroGreeting"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 40px;
+              border-radius: 24px;
+              margin-bottom: 32px;
+              box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            "
+          ></div>
+
+          <!-- Khu vực Thống kê Highlight -->
+          <div
+            class="stats-grid animate-fade-up delay-1"
+            id="adminStatsGrid"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+              gap: 24px;
+              margin-bottom: 32px;
+            "
+          ></div>
+
+          <!-- Lưới 2 biểu đồ -->
+          <div
+            class="animate-fade-up delay-2"
+            style="
+              display: grid;
+              grid-template-columns: 2fr 1fr;
+              gap: 24px;
+              margin-bottom: 32px;
+            "
+          >
+            <div
+              class="glass-card hover-float"
+              style="padding: 24px; border-radius: 20px"
+            >
+              <div
+                style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  margin-bottom: 24px;
+                "
+              >
+                <h3
+                  style="
+                    margin: 0;
+                    font-size: 1.15rem;
+                    color: var(--text-color, #111827);
+                  "
+                >
+                  📈 Lưu lượng mượn trả 7 ngày qua
+                </h3>
+                <span
+                  style="
+                    background: #ecfdf5;
+                    color: #10b981;
+                    padding: 6px 14px;
+                    border-radius: 20px;
+                    font-size: 0.85rem;
+                    font-weight: 600;
+                  "
+                  >Tăng 15% 🚀</span
+                >
+              </div>
+              <div style="height: 300px; width: 100%">
+                <canvas id="dashboardTrendChart"></canvas>
+              </div>
+            </div>
+            <div
+              class="glass-card hover-float"
+              style="padding: 24px; border-radius: 20px"
+            >
+              <h3
+                style="
+                  margin: 0 0 24px 0;
+                  font-size: 1.15rem;
+                  color: var(--text-color, #111827);
+                "
+              >
+                📊 Tình trạng sách
+              </h3>
+              <div
+                style="
+                  height: 300px;
+                  width: 100%;
+                  display: flex;
+                  justify-content: center;
+                "
+              >
+                <canvas id="dashboardPieChart"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <!-- ĐIỂM NHẤN 1: Bảng Xếp Hạng Sách Thịnh Hành (Kéo dài trang) -->
+          <div
+            class="glass-card animate-fade-up delay-3 hover-float"
+            style="
+              padding: 24px;
+              border-radius: 20px;
+              margin-bottom: 32px;
+              overflow: hidden;
+            "
+          >
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+              "
+            >
+              <h3
+                style="
+                  margin: 0;
+                  font-size: 1.15rem;
+                  color: var(--text-color, #111827);
+                "
+              >
+                🏆 Sách Thịnh Hành Tháng Này
+              </h3>
+              <button
+                class="btn btn--ghost"
+                style="font-size: 0.85rem"
+                onclick="window.location.href = 'books.html'"
+              >
+                Xem toàn bộ kho
+              </button>
+            </div>
+            <div style="overflow-x: auto">
+              <table
+                style="
+                  width: 100%;
+                  text-align: left;
+                  border-collapse: collapse;
+                  min-width: 600px;
+                "
+              >
+                <thead>
+                  <tr
+                    style="
+                      border-bottom: 2px solid #e5e7eb;
+                      color: #6b7280;
+                      font-size: 0.85rem;
+                      text-transform: uppercase;
+                      letter-spacing: 0.5px;
+                    "
+                  >
+                    <th style="padding: 12px 16px">Tác phẩm & Tác giả</th>
+                    <th style="padding: 12px 16px">Thể loại</th>
+                    <th style="padding: 12px 16px">Độ Hot</th>
+                    <th style="padding: 12px 16px">Trạng thái</th>
+                  </tr>
+                </thead>
+                <tbody id="topBooksTable">
+                  <!-- JS Render Bảng Sách -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Dòng thời gian & Hành động nhanh -->
+          <div
+            class="content-grid animate-fade-up delay-4"
+            style="
+              display: grid;
+              grid-template-columns: 2fr 1fr;
+              gap: 24px;
+              margin-bottom: 32px;
+            "
+          >
+            <section
+              class="glass-card card-panel hover-float"
+              style="border-radius: 20px; padding: 24px"
+            >
+              <h3
+                style="
+                  border-bottom: 1px solid #e5e7eb;
+                  padding-bottom: 16px;
+                  margin-bottom: 20px;
+                "
+              >
+                ⚡ Hoạt động người dùng
+              </h3>
+              <div class="timeline-list" id="adminActivityList"></div>
+            </section>
+            <section
+              class="glass-card card-panel hover-float"
+              style="
+                border-radius: 20px;
+                padding: 24px;
+                background: linear-gradient(
+                  180deg,
+                  var(--surface-color, #fff) 0%,
+                  rgba(59, 130, 246, 0.03) 100%
+                );
+              "
+            >
+              <h3
+                style="
+                  border-bottom: 1px solid #e5e7eb;
+                  padding-bottom: 16px;
+                  margin-bottom: 20px;
+                "
+              >
+                🎯 Hành động nhanh
+              </h3>
+              <div
+                class="stack"
+                style="display: flex; flex-direction: column; gap: 16px"
+              >
+                <button
+                  class="btn btn--primary hover-float"
+                  style="
+                    width: 100%;
+                    justify-content: center;
+                    padding: 14px;
+                    border-radius: 12px;
+                    font-weight: bold;
+                  "
+                  onclick="window.location.href = 'borrow.html'"
+                >
+                  + Phiếu mượn mới
+                </button>
+                <button
+                  class="btn btn--ghost hover-float"
+                  style="
+                    width: 100%;
+                    justify-content: flex-start;
+                    padding: 14px;
+                    border-radius: 12px;
+                    border: 1px solid #e5e7eb;
+                  "
+                  onclick="window.location.href = 'books.html'"
+                >
+                  📚 Quản lý kho sách
+                </button>
+                <button
+                  class="btn btn--ghost hover-float"
+                  style="
+                    width: 100%;
+                    justify-content: flex-start;
+                    padding: 14px;
+                    border-radius: 12px;
+                    border: 1px solid #e5e7eb;
+                  "
+                  onclick="window.location.href = 'members.html'"
+                >
+                  👥 Duyệt thành viên
+                </button>
+              </div>
+            </section>
+          </div>
+
+          <!-- ĐIỂM NHẤN 2: Trạng Thái Hệ Thống Hacker Style -->
+          <div
+            class="animate-fade-up delay-5"
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 24px;
+              margin-bottom: 40px;
+            "
+          >
+            <section
+              class="glass-card card-panel hover-float"
+              style="
+                border-radius: 20px;
+                padding: 24px;
+                background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+                color: white;
+                border: 1px solid #374151;
+              "
+            >
+              <h3
+                style="
+                  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                  padding-bottom: 16px;
+                  margin-bottom: 24px;
+                  color: #f9fafb;
+                  font-size: 1.1rem;
+                "
+              >
+                🖥️ Trạng thái Máy chủ (Live)
+              </h3>
+              <div style="display: flex; flex-direction: column; gap: 20px">
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 0.85rem;
+                      margin-bottom: 8px;
+                      color: #9ca3af;
+                    "
+                  >
+                    <span>Tải CPU (Server 1)</span
+                    ><span style="color: #3b82f6; font-weight: bold">24%</span>
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 8px;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: 10px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 24%;
+                        height: 100%;
+                        background: #3b82f6;
+                        border-radius: 10px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 0.85rem;
+                      margin-bottom: 8px;
+                      color: #9ca3af;
+                    "
+                  >
+                    <span>Bộ nhớ RAM</span
+                    ><span style="color: #f59e0b; font-weight: bold">68%</span>
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 8px;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: 10px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 68%;
+                        height: 100%;
+                        background: #f59e0b;
+                        border-radius: 10px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+                <div>
+                  <div
+                    style="
+                      display: flex;
+                      justify-content: space-between;
+                      font-size: 0.85rem;
+                      margin-bottom: 8px;
+                      color: #9ca3af;
+                    "
+                  >
+                    <span>Dung lượng Ổ đĩa</span
+                    ><span style="color: #10b981; font-weight: bold">45%</span>
+                  </div>
+                  <div
+                    style="
+                      width: 100%;
+                      height: 8px;
+                      background: rgba(255, 255, 255, 0.1);
+                      border-radius: 10px;
+                      overflow: hidden;
+                    "
+                  >
+                    <div
+                      style="
+                        width: 45%;
+                        height: 100%;
+                        background: #10b981;
+                        border-radius: 10px;
+                      "
+                    ></div>
+                  </div>
+                </div>
+              </div>
+              <p
+                style="
+                  margin: 24px 0 0 0;
+                  font-size: 0.8rem;
+                  color: #6b7280;
+                  text-align: center;
+                "
+              >
+                Cập nhật lần cuối: <span id="clockSync">Đang đồng bộ...</span>
+              </p>
+            </section>
+
+            <!-- Phản hồi hỗ trợ nhanh -->
+            <section
+              class="glass-card card-panel hover-float"
+              style="
+                border-radius: 20px;
+                padding: 24px;
+                background:
+                  url(&quot;https://www.transparenttextures.com/patterns/cubes.png&quot;),
+                  linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+                color: white;
+              "
+            >
+              <h3 style="margin-bottom: 12px; color: white; font-size: 1.4rem">
+                💡 Trợ lý AI Gợi ý
+              </h3>
+              <p
+                style="
+                  color: rgba(255, 255, 255, 0.9);
+                  font-size: 0.95rem;
+                  line-height: 1.6;
+                  margin-bottom: 24px;
+                "
+              >
+                Hệ thống nhận thấy có <strong>12</strong> cuốn sách đang quá
+                hạn. Bạn có muốn kích hoạt hệ thống gửi SMS tự động nhắc nhở độc
+                giả không?
+              </p>
+              <div style="display: flex; gap: 12px">
+                <button
+                  class="btn hover-float"
+                  style="
+                    background: white;
+                    color: #8b5cf6;
+                    font-weight: bold;
+                    border-radius: 10px;
+                    border: none;
+                    padding: 10px 20px;
+                  "
+                >
+                  Gửi SMS Hàng loạt
+                </button>
+                <button
+                  class="btn"
+                  style="
+                    background: rgba(255, 255, 255, 0.2);
+                    color: white;
+                    border: none;
+                    border-radius: 10px;
+                  "
+                >
+                  Bỏ qua
+                </button>
+              </div>
+            </section>
+          </div>
+        </section>
+      </main>
+
+      <div id="admin-footer"></div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/notification.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/components.js"></script>
+
+    <script>
+      requireAdmin();
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          if (typeof DataLoader !== "undefined") await DataLoader.initialize();
+        } catch (e) {}
+
+        const books = Storage.getBooks() || [];
+        const users = Storage.getUsers() || [];
+        const borrows = Storage.getBorrows() || [];
+
+        // 1. HERO & LỜI CHÀO
+        const hour = new Date().getHours();
+        let greeting =
+          hour < 12
+            ? "Khởi đầu ngày mới năng lượng"
+            : hour < 18
+              ? "Buổi chiều hiệu quả nhé"
+              : "Buổi tối an lành";
+        const currentUser = Storage.getCurrentUser();
+        const name = currentUser
+          ? currentUser.name || currentUser.fullName
+          : "Quản trị viên";
+        document.getElementById("heroGreeting").innerHTML = `
+            <div style="position: relative; z-index: 2;">
+              <span style="display: inline-block; padding: 6px 12px; background: rgba(255,255,255,0.1); border-radius: 20px; font-size: 0.85rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 12px; backdrop-filter: blur(10px);">🚀 DASHBOARD TRUNG TÂM</span>
+              <h1 style="font-size: 2.5rem; margin: 0 0 8px 0; font-weight: 800;">${greeting}, ${name}!</h1>
+              <p style="color: rgba(255,255,255,0.8); font-size: 1.1rem; margin: 0;">Kho dữ liệu siêu khủng: ${books.length} sách và ${users.length} thành viên sẵn sàng.</p>
+            </div>
+            <div style="font-size: 5rem; opacity: 0.9; position: relative; z-index: 2;">✨</div>
+         `;
+
+        // 2. STATS CARDS
+        const activeBorrows = borrows.filter(
+          (b) => b.status === "Đang mượn" || b.status.includes("quá hạn"),
+        ).length;
+        document.getElementById("adminStatsGrid").innerHTML = `
+            <div class="glass-card hover-float" style="padding: 24px; border-radius: 20px; border-top: 4px solid #3b82f6;">
+               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                   <div style="background: #eff6ff; padding: 14px; border-radius: 14px; font-size: 1.4rem;">📚</div>
+                   <span style="background: #dcfce7; color: #16a34a; padding: 4px 8px; border-radius: 8px; font-size: 0.8rem; font-weight: bold;">+12 hôm nay</span>
+               </div>
+               <p style="color: #6b7280; font-weight: 600; font-size: 0.95rem; margin: 0 0 4px 0;">Tổng đầu sách</p>
+               <h2 style="font-size: 2.2rem; margin: 0; font-weight: 800;">${books.length}</h2>
+            </div>
+            <div class="glass-card hover-float" style="padding: 24px; border-radius: 20px; border-top: 4px solid #8b5cf6;">
+               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                   <div style="background: #f3e8ff; padding: 14px; border-radius: 14px; font-size: 1.4rem;">👥</div>
+                   <span style="background: #dcfce7; color: #16a34a; padding: 4px 8px; border-radius: 8px; font-size: 0.8rem; font-weight: bold;">+5 đăng ký</span>
+               </div>
+               <p style="color: #6b7280; font-weight: 600; font-size: 0.95rem; margin: 0 0 4px 0;">Thành viên</p>
+               <h2 style="font-size: 2.2rem; margin: 0; font-weight: 800;">${users.length}</h2>
+            </div>
+            <div class="glass-card hover-float" style="padding: 24px; border-radius: 20px; border-top: 4px solid #ec4899;">
+               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                   <div style="background: #fdf2f8; padding: 14px; border-radius: 14px; font-size: 1.4rem;">🔄</div>
+                   <span style="background: #fee2e2; color: #ef4444; padding: 4px 8px; border-radius: 8px; font-size: 0.8rem; font-weight: bold;">Đang xử lý</span>
+               </div>
+               <p style="color: #6b7280; font-weight: 600; font-size: 0.95rem; margin: 0 0 4px 0;">Đang mượn</p>
+               <h2 style="font-size: 2.2rem; margin: 0; font-weight: 800;">${activeBorrows}</h2>
+            </div>
+         `;
+
+        // 3. VẼ BIỂU ĐỒ Line & Doughnut (Rút gọn cho gọn code)
+        const ctxL = document
+          .getElementById("dashboardTrendChart")
+          .getContext("2d");
+        let gr = ctxL.createLinearGradient(0, 0, 0, 400);
+        gr.addColorStop(0, "rgba(59,130,246,0.4)");
+        gr.addColorStop(1, "rgba(59,130,246,0)");
+        new Chart(ctxL, {
+          type: "line",
+          data: {
+            labels: ["T2", "T3", "T4", "T5", "T6", "T7", "CN"],
+            datasets: [
+              {
+                data: [35, 42, 38, 55, 48, 70, 65],
+                borderColor: "#3b82f6",
+                backgroundColor: gr,
+                fill: true,
+                tension: 0.4,
+                borderWidth: 3,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { x: { grid: { display: false } } },
+          },
+        });
+
+        const ctxP = document
+          .getElementById("dashboardPieChart")
+          .getContext("2d");
+        new Chart(ctxP, {
+          type: "doughnut",
+          data: {
+            labels: ["Sẵn sàng", "Đang mượn", "Quá hạn"],
+            datasets: [
+              {
+                data: [books.length, activeBorrows, 5],
+                backgroundColor: ["#10b981", "#3b82f6", "#ef4444"],
+                borderWidth: 0,
+              },
+            ],
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: "75%",
+          },
+        });
+
+        // 4. BẢNG XẾP HẠNG SÁCH (RENDER TỰ ĐỘNG)
+        if (books.length > 0) {
+          // Lấy 5 cuốn bất kỳ lên top
+          const topBooksHtml = books
+            .slice(0, 5)
+            .map((book) => {
+              const borrows = Math.floor(Math.random() * 80) + 20; // Fake số mượn
+              const progress = Math.min((borrows / 100) * 100, 100);
+              return `
+                <tr style="border-bottom: 1px solid #f3f4f6; transition: background 0.2s;" onmouseover="this.style.background='var(--surface-hover, #f9fafb)'" onmouseout="this.style.background='transparent'">
+                    <td style="padding: 16px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 44px; height: 60px; background: #e5e7eb; border-radius: 6px; overflow: hidden; flex-shrink: 0;">
+                                <img src="https://ui-avatars.com/api/?name=${encodeURIComponent(book.title)}&background=random&color=fff&size=80&font-size=0.4" style="width:100%; height:100%; object-fit: cover;">
+                            </div>
+                            <div>
+                                <strong style="display: block; font-size: 0.95rem; color: var(--text-color, #111827);">${book.title}</strong>
+                                <small style="color: #6b7280;">${book.author}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding: 16px; color: #4b5563; font-size: 0.95rem;">${book.category}</td>
+                    <td style="padding: 16px; min-width: 150px;">
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <span style="font-weight: 600; font-size: 0.95rem;">${borrows}</span>
+                            <div style="flex-grow: 1; height: 6px; background: #e5e7eb; border-radius: 10px; overflow: hidden;">
+                                <div style="width: ${progress}%; height: 100%; background: #3b82f6; border-radius: 10px;"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding: 16px;">
+                        <span style="background: #dcfce7; color: #16a34a; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">Sẵn sàng</span>
+                    </td>
+                </tr>
+                `;
+            })
+            .join("");
+          document.getElementById("topBooksTable").innerHTML = topBooksHtml;
+        }
+
+        // 5. HOẠT ĐỘNG
+        document.getElementById("adminActivityList").innerHTML = `
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div style="display: flex; gap: 16px; align-items: flex-start; padding: 12px; border-radius: 12px; background: rgba(59, 130, 246, 0.05);">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: #bfdbfe; color: #1d4ed8; display: flex; align-items: center; justify-content: center; font-weight: bold; flex-shrink: 0;">BA</div>
+                    <div><p style="margin: 0; font-size: 0.95rem;"><strong>Bùi Anh Tuấn</strong> vừa phê duyệt yêu cầu mượn.</p><small style="color: #6b7280; font-size: 0.8rem;">10 phút trước</small></div>
+                </div>
+            </div>
+         `;
+
+        // Update đồng hồ live
+        setInterval(() => {
+          document.getElementById("clockSync").textContent =
+            new Date().toLocaleTimeString("vi-VN");
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

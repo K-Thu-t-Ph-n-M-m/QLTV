@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thông tin cá nhân</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="page-intro page-intro--profile glass-card reveal">
+          <p class="eyebrow">Hồ sơ độc giả</p>
+          <h1>Quản lý thông tin và theo dõi hành trình đọc sách.</h1>
+          <p>
+            Tra cứu số dư tài khoản, lịch sử mượn và các ưu đãi dành riêng cho
+            bạn.
+          </p>
+        </section>
+
+        <div class="content-grid">
+          <section class="stack">
+            <div class="glass-card card-panel">
+              <h3>Thông tin cá nhân</h3>
+              <div class="profile-row">
+                <strong>Họ tên:</strong><span>Nguyễn Minh An</span>
+              </div>
+              <div class="profile-row">
+                <strong>Email:</strong><span>an.nguyen@email.com</span>
+              </div>
+              <div class="profile-row">
+                <strong>Vai trò:</strong><span>Độc giả ưu tú</span>
+              </div>
+              <div class="profile-row">
+                <strong>Ngày tham gia:</strong><span>12/01/2024</span>
+              </div>
+            </div>
+            <div class="glass-card card-panel">
+              <h3>Biến động gần đây</h3>
+              <ul class="timeline-list">
+                <li>
+                  Đã mượn <strong>Thiết kế hệ thống thông minh</strong> - 2 ngày
+                  trước
+                </li>
+                <li>
+                  Đã đặt trước <strong>Hành trình dữ liệu</strong> - 5 ngày
+                  trước
+                </li>
+                <li>
+                  Đã gia hạn sách <strong>Không gian sáng tạo</strong> - 1 tuần
+                  trước
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="stack">
+            <div class="glass-card card-panel">
+              <h3>Thống kê nhanh</h3>
+              <div class="stats-grid">
+                <div class="stat-box">
+                  <strong>12</strong><span>Sách đã đọc</span>
+                </div>
+                <div class="stat-box">
+                  <strong>4</strong><span>Đang mượn</span>
+                </div>
+                <div class="stat-box">
+                  <strong>3</strong><span>Đặt trước</span>
+                </div>
+              </div>
+            </div>
+            <div class="glass-card card-panel">
+              <h3>Đổi mật khẩu</h3>
+              <label>Mật khẩu hiện tại</label>
+              <input type="password" placeholder="••••••••" />
+              <label>Mật khẩu mới</label>
+              <input type="password" placeholder="••••••••" />
+              <button class="btn btn--primary" type="button">
+                Lưu thay đổi
+              </button>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/profile.js"></script>
+
+    <script>
+      requireLogin();
+    </script>
+  </body>
+</html>

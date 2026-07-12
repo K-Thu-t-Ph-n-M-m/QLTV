@@ -1,0 +1,12 @@
+body[data-theme="light"] {
+  --bg: #f5f7fb;
+  --surface: rgba(255, 255, 255, 0.72);
+  --surface-strong: #ffffff;
+  --text: #14213d;
+  --muted: #5f6b7a;
+  --primary: #5b7cff;
+  --primary-strong: #3f5efb;
+  --accent: #ff8c42;
+  --border: rgba(20, 33, 61, 0.12);
+  --shadow: 0 20px 45px rgba(20, 33, 61, 0.12);
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đặt trước sách - Thư viện thông minh</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html" class="active">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+      <main class="page-content" data-page="reservation">
+        <section class="page-intro page-intro--reservation glass-card reveal">
+          <p class="eyebrow">Đặt trước</p>
+          <h1>Quản lý danh sách chờ và nhận thông báo khi sách sẵn sàng.</h1>
+          <p>Hệ thống tự động cập nhật vị trí của bạn trong hàng chờ.</p>
+        </section>
+
+        <div class="content-grid">
+          <section class="glass-card card-panel reveal">
+            <h3>Danh sách chờ của bạn</h3>
+            <div id="reservationList"></div>
+          </section>
+
+          <section class="glass-card card-panel reveal">
+            <h3>Thông báo hệ thống</h3>
+            <div id="alertList">
+              <p style="color: #6b7280; font-size: 0.9rem">
+                Không có thông báo mới.
+              </p>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/reservation.js"></script>
+    <script>
+      requireLogin();
+    </script>
+  </body>
+</html>

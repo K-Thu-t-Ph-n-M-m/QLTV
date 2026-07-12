@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Đăng ký - Thư viện thông minh</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+
+  <body>
+    <div class="auth-shell">
+      <div class="auth-card-stack">
+        <form id="registerForm" class="auth-card glass-card">
+          <a href="index.html" class="back-link"> ← Quay về trang chủ </a>
+
+          <h1>Đăng ký tài khoản</h1>
+
+          <p>
+            Tạo tài khoản để sử dụng đầy đủ các chức năng của Thư viện thông
+            minh.
+          </p>
+
+          <label> Họ và tên </label>
+
+          <input
+            id="registerName"
+            type="text"
+            autocomplete="name"
+            placeholder="Nhập họ và tên"
+            required
+          />
+
+          <label> Tên đăng nhập </label>
+
+          <input
+            id="registerUsername"
+            type="text"
+            autocomplete="username"
+            placeholder="Nhập tên đăng nhập"
+            required
+          />
+
+          <label> Email </label>
+
+          <input
+            id="registerEmail"
+            type="email"
+            autocomplete="email"
+            placeholder="Nhập email"
+            required
+          />
+
+          <label> Số điện thoại </label>
+
+          <input
+            id="registerPhone"
+            type="tel"
+            autocomplete="tel"
+            placeholder="Nhập số điện thoại"
+            required
+          />
+
+          <label> Mật khẩu </label>
+
+          <input
+            id="registerPassword"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Nhập mật khẩu"
+            required
+          />
+
+          <label> Xác nhận mật khẩu </label>
+
+          <input
+            id="registerConfirmPassword"
+            type="password"
+            autocomplete="new-password"
+            placeholder="Nhập lại mật khẩu"
+            required
+          />
+
+          <label class="checkbox-row">
+            <input type="checkbox" required />
+
+            Tôi đồng ý với điều khoản sử dụng của thư viện.
+          </label>
+
+          <button class="btn btn--primary" type="submit">Đăng ký</button>
+
+          <p class="helper-text">
+            Đã có tài khoản?
+
+            <a href="login.html"> Đăng nhập </a>
+          </p>
+        </form>
+
+        <aside class="auth-side-card glass-card">
+          <p class="eyebrow">Chào mừng bạn</p>
+
+          <h3>Bắt đầu hành trình khám phá tri thức</h3>
+
+          <ul>
+            <li>Mượn sách trực tuyến.</li>
+
+            <li>Đặt trước sách.</li>
+
+            <li>Theo dõi lịch sử mượn.</li>
+
+            <li>Nhận gợi ý sách phù hợp.</li>
+          </ul>
+        </aside>
+      </div>
+    </div>
+
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+
+    <script src="js/notification.js"></script>
+
+    <script src="js/theme.js"></script>
+
+    <script src="js/guard.js"></script>
+
+    <script src="js/auth.js"></script>
+
+    <script>
+      redirectIfLoggedIn();
+    </script>
+  </body>
+</html>

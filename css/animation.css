@@ -1,0 +1,46 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition:
+    opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(91, 124, 255, 0.16);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(91, 124, 255, 0.24);
+  }
+}
+
+@keyframes driftBanner {
+  from {
+    transform: perspective(1100px) rotateY(-6deg) translateY(0);
+  }
+  to {
+    transform: perspective(1100px) rotateY(6deg) translateY(-8px);
+  }
+}
+
+.btn--primary {
+  animation: pulseGlow 3s ease-in-out infinite;
+}

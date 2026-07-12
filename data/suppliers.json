@@ -1,0 +1,16 @@
+[
+  {
+    "id": 1,
+    "name": "NXB Tri Thức",
+    "contact": "tri-thuc@example.com",
+    "booksDelivered": 25,
+    "status": "Đang hợp tác"
+  },
+  {
+    "id": 2,
+    "name": "Alpha Books",
+    "contact": "alpha@example.com",
+    "booksDelivered": 12,
+    "status": "Cần theo dõi"
+  }
+]

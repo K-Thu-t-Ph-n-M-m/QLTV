@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nhà cung cấp</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="page-intro page-intro--supplier glass-card reveal">
+          <p class="eyebrow">Nhà cung cấp</p>
+          <h1>
+            Giữ lịch sử nhập sách và theo dõi các đối tác hợp tác hiệu quả.
+          </h1>
+          <p>
+            Quản lý thông tin nhà cung cấp, giá nhập, số lượng và ghi nhận lịch
+            sử nhập.
+          </p>
+        </section>
+
+        <div class="content-grid">
+          <section class="glass-card card-panel">
+            <h3>Đối tác hiện tại</h3>
+            <div class="list-item">
+              <div>
+                <strong>NXB Tri Thức</strong>
+                <p>25 đầu sách trong tháng</p>
+              </div>
+              <span class="status-pill active">Đang hợp tác</span>
+            </div>
+            <div class="list-item">
+              <div>
+                <strong>Alpha Books</strong>
+                <p>12 đầu sách trong tháng</p>
+              </div>
+              <span class="status-pill warning">Cần theo dõi</span>
+            </div>
+          </section>
+          <section class="glass-card card-panel">
+            <h3>Lịch sử nhập</h3>
+            <ul class="timeline-list">
+              <li>Nhập 80 quyển sách công nghệ - 02/07</li>
+              <li>Nhập 45 quyển sách kinh doanh - 05/07</li>
+              <li>Nhập 30 quyển sách nghệ thuật - 08/07</li>
+            </ul>
+          </section>
+        </div>
+      </main>
+    </div>
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/supplier.js"></script>
+  </body>
+</html>

@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thống kê</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/light.css" />
+    <link rel="stylesheet" href="css/dark.css" />
+    <link rel="stylesheet" href="css/user.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar glass-card">
+        <a class="brand" href="index.html">
+          <span class="brand__icon">📚</span>
+          <span>Thư viện thông minh</span>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html">Trang chủ</a>
+          <a href="search.html">Tìm sách</a>
+          <a href="recommendation.html">Gợi ý</a>
+          <a href="borrow.html">Mượn sách</a>
+          <a href="reservation.html">Đặt trước</a>
+          <a href="report.html">Báo cáo</a>
+          <a href="profile.html">Hồ sơ</a>
+        </nav>
+        <div class="topbar__actions">
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Chuyển theme"
+          >
+            🌙
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content" data-page="report">
+        <section
+          class="page-intro page-intro--report glass-card reveal report-hero"
+        >
+          <div class="report-hero__content">
+            <p class="eyebrow">Báo cáo &amp; Thống kê</p>
+            <h1>Báo cáo &amp; Thống kê</h1>
+            <p>
+              Theo dõi hoạt động thư viện theo thời gian thực, phân tích xu
+              hướng mượn sách và tối ưu trải nghiệm độc giả.
+            </p>
+            <div class="report-hero__actions">
+              <div class="report-chip-row">
+                <button class="chip active" type="button">Hôm nay</button>
+                <button class="chip" type="button">7 ngày</button>
+                <button class="chip" type="button">30 ngày</button>
+                <button class="chip" type="button">Năm</button>
+              </div>
+              <div class="report-action-row">
+                <button class="btn btn--ghost" type="button">Xuất PDF</button>
+                <button class="btn btn--ghost" type="button">Xuất Excel</button>
+                <button class="btn btn--primary" type="button">
+                  In báo cáo
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="report-hero__visual" aria-hidden="true">
+            <div class="dashboard-illustration">
+              <div
+                class="dashboard-illustration__panel dashboard-illustration__panel--main"
+              >
+                <div class="dash-row dash-row--large"></div>
+                <div class="dash-row dash-row--mid"></div>
+                <div class="dash-row dash-row--small"></div>
+              </div>
+              <div
+                class="dashboard-illustration__panel dashboard-illustration__panel--side"
+              >
+                <div class="mini-chart"></div>
+                <div class="mini-chart mini-chart--small"></div>
+                <div class="mini-pill"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="report-toolbar glass-card reveal">
+          <div class="report-toolbar__search">
+            <input
+              type="text"
+              placeholder="Tìm theo tên sách, ISBN hoặc độc giả"
+            />
+            <button class="btn btn--primary" type="button">Tìm kiếm</button>
+          </div>
+          <div class="report-toolbar__filters">
+            <label class="report-select-wrap">
+              <span>Khoảng thời gian</span>
+              <select>
+                <option>Hôm nay</option>
+                <option>Tuần này</option>
+                <option>Tháng này</option>
+                <option>Năm nay</option>
+              </select>
+            </label>
+            <label class="report-select-wrap">
+              <span>Đơn vị</span>
+              <select>
+                <option>Tất cả</option>
+                <option>Chi nhánh A</option>
+                <option>Chi nhánh B</option>
+              </select>
+            </label>
+          </div>
+        </section>
+
+        <section class="report-stats-grid" aria-label="Thẻ thống kê nhanh">
+          <article class="report-stat-card glass-card reveal is-loading">
+            <div class="report-stat-card__icon">📚</div>
+            <div class="report-stat-card__text">
+              <div
+                class="report-stat-card__value"
+                data-counter="1284"
+                data-suffix=""
+              >
+                0
+              </div>
+              <div class="report-stat-card__label">Tổng số sách</div>
+            </div>
+            <div class="report-stat-card__trend positive">▲ +12.4%</div>
+          </article>
+          <article class="report-stat-card glass-card reveal is-loading">
+            <div class="report-stat-card__icon">👥</div>
+            <div class="report-stat-card__text">
+              <div
+                class="report-stat-card__value"
+                data-counter="842"
+                data-suffix=""
+              >
+                0
+              </div>
+              <div class="report-stat-card__label">Tổng thành viên</div>
+            </div>
+            <div class="report-stat-card__trend positive">▲ +8.1%</div>
+          </article>
+          <article class="report-stat-card glass-card reveal is-loading">
+            <div class="report-stat-card__icon">📖</div>
+            <div class="report-stat-card__text">
+              <div
+                class="report-stat-card__value"
+                data-counter="156"
+                data-suffix=""
+              >
+                0
+              </div>
+              <div class="report-stat-card__label">Lượt mượn hôm nay</div>
+            </div>
+            <div class="report-stat-card__trend positive">▲ +5.2%</div>
+          </article>
+          <article class="report-stat-card glass-card reveal is-loading">
+            <div class="report-stat-card__icon">💰</div>
+            <div class="report-stat-card__text">
+              <div
+                class="report-stat-card__value"
+                data-counter="245800000"
+                data-prefix="₫ "
+                data-suffix=""
+              >
+                0
+              </div>
+              <div class="report-stat-card__label">Doanh thu tiền phạt</div>
+            </div>
+            <div class="report-stat-card__trend positive">▲ +14.8%</div>
+          </article>
+          <article class="report-stat-card glass-card reveal is-loading">
+            <div class="report-stat-card__icon">⏰</div>
+            <div class="report-stat-card__text">
+              <div
+                class="report-stat-card__value"
+                data-counter="37"
+                data-suffix=""
+              >
+                0
+              </div>
+              <div class="report-stat-card__label">Sách quá hạn</div>
+            </div>
+            <div class="report-stat-card__trend negative">▼ -3.4%</div>
+          </article>
+          <article class="report-stat-card glass-card reveal is-loading">
+            <div class="report-stat-card__icon">⭐</div>
+            <div class="report-stat-card__text">
+              <div
+                class="report-stat-card__value"
+                data-counter="4.8"
+                data-decimals="1"
+                data-suffix=""
+              >
+                0
+              </div>
+              <div class="report-stat-card__label">Đánh giá trung bình</div>
+            </div>
+            <div class="report-stat-card__trend positive">▲ +0.4</div>
+          </article>
+        </section>
+
+        <section class="report-grid">
+          <article
+            class="glass-card card-panel reveal report-chart-card is-loading"
+          >
+            <div class="report-card-head">
+              <div>
+                <h3>Số lượt mượn theo tháng</h3>
+                <p>Xu hướng tăng trưởng trong 6 tháng gần nhất</p>
+              </div>
+              <span class="status-pill active">+18%</span>
+            </div>
+            <div class="bar-chart" id="monthlyBorrowChart"></div>
+          </article>
+          <article
+            class="glass-card card-panel reveal report-chart-card is-loading"
+          >
+            <div class="report-card-head">
+              <div>
+                <h3>Doanh thu tiền phạt</h3>
+                <p>Xu hướng theo quý</p>
+              </div>
+              <span class="status-pill done">Tăng ổn định</span>
+            </div>
+            <div class="line-chart" id="revenueTrendChart"></div>
+          </article>
+          <article
+            class="glass-card card-panel reveal report-chart-card is-loading"
+          >
+            <div class="report-card-head">
+              <div>
+                <h3>Tỷ lệ thể loại sách</h3>
+                <p>Phân bổ theo số đầu sách</p>
+              </div>
+              <span class="status-pill warning">Đang phát triển</span>
+            </div>
+            <div class="donut-chart-wrap" id="categoryRatioChart"></div>
+          </article>
+          <article
+            class="glass-card card-panel reveal report-chart-card is-loading"
+          >
+            <div class="report-card-head">
+              <div>
+                <h3>Top 10 sách được mượn</h3>
+                <p>Độ phủ sóng trong 30 ngày</p>
+              </div>
+              <span class="status-pill active">Hot</span>
+            </div>
+            <div class="horizontal-chart" id="topBooksChart"></div>
+          </article>
+        </section>
+
+        <section class="content-grid report-content-grid">
+          <article class="glass-card card-panel reveal">
+            <div class="report-card-head">
+              <div>
+                <h3>Top sách</h3>
+                <p>Bảng xếp hạng theo số lượt mượn</p>
+              </div>
+              <a class="text-link" href="search.html">Xem tất cả</a>
+            </div>
+            <div class="book-table">
+              <div class="book-table__row book-table__row--head">
+                <span>Top</span>
+                <span>Sách</span>
+                <span>ISBN</span>
+                <span>Tác giả</span>
+                <span>Thể loại</span>
+                <span>Đánh giá</span>
+              </div>
+              <div class="book-table__row">
+                <span class="book-rank gold">1</span>
+                <div class="book-meta">
+                  <div class="book-cover"></div>
+                  <div>
+                    <strong>Atomic Habits</strong>
+                    <span>Mindset &amp; growth</span>
+                  </div>
+                </div>
+                <span>978-1-2345</span>
+                <span>James Clear</span>
+                <span>Phát triển bản thân</span>
+                <span>4.9/5</span>
+              </div>
+              <div class="book-table__row">
+                <span class="book-rank silver">2</span>
+                <div class="book-meta">
+                  <div class="book-cover book-cover--alt"></div>
+                  <div>
+                    <strong>Thinking, Fast and Slow</strong>
+                    <span>Behavioral science</span>
+                  </div>
+                </div>
+                <span>978-9-8765</span>
+                <span>Daniel Kahneman</span>
+                <span>Tâm lý học</span>
+                <span>4.8/5</span>
+              </div>
+              <div class="book-table__row">
+                <span class="book-rank bronze">3</span>
+                <div class="book-meta">
+                  <div class="book-cover book-cover--accent"></div>
+                  <div>
+                    <strong>Deep Work</strong>
+                    <span>Productivity</span>
+                  </div>
+                </div>
+                <span>978-4-1122</span>
+                <span>Cal Newport</span>
+                <span>Hiệu suất</span>
+                <span>4.7/5</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="glass-card card-panel reveal">
+            <div class="report-card-head">
+              <div>
+                <h3>Top độc giả</h3>
+                <p>Những người có hoạt động đọc sách cao nhất</p>
+              </div>
+              <span class="status-pill active">Premium</span>
+            </div>
+            <div class="reader-list">
+              <div class="reader-item">
+                <div class="reader-item__profile">
+                  <div class="reader-avatar">AN</div>
+                  <div>
+                    <strong>Nguyễn Minh An</strong>
+                    <span>42 lượt mượn</span>
+                  </div>
+                </div>
+                <div class="reader-item__meta">
+                  <span class="reader-badge">2.480 pt</span>
+                  <span class="reader-badge reader-badge--accent">Gold</span>
+                </div>
+              </div>
+              <div class="reader-item">
+                <div class="reader-item__profile">
+                  <div class="reader-avatar reader-avatar--alt">LT</div>
+                  <div>
+                    <strong>Lê Thanh Tâm</strong>
+                    <span>38 lượt mượn</span>
+                  </div>
+                </div>
+                <div class="reader-item__meta">
+                  <span class="reader-badge">2.140 pt</span>
+                  <span class="reader-badge reader-badge--accent">Gold</span>
+                </div>
+              </div>
+              <div class="reader-item">
+                <div class="reader-item__profile">
+                  <div class="reader-avatar reader-avatar--accent">HQ</div>
+                  <div>
+                    <strong>Hoàng Quân</strong>
+                    <span>31 lượt mượn</span>
+                  </div>
+                </div>
+                <div class="reader-item__meta">
+                  <span class="reader-badge">1.920 pt</span>
+                  <span class="reader-badge">Silver</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="report-grid report-grid--split">
+          <article class="glass-card card-panel reveal report-revenue-card">
+            <div class="report-card-head">
+              <div>
+                <h3>Doanh thu tiền phạt</h3>
+                <p>Hiệu quả thu hồi và xu hướng tăng trưởng</p>
+              </div>
+              <span class="status-pill done">+24%</span>
+            </div>
+            <div class="report-revenue-metrics">
+              <div>
+                <span>Tổng doanh thu</span>
+                <strong>₫ 245.8M</strong>
+              </div>
+              <div>
+                <span>Hôm nay</span>
+                <strong>₫ 7.2M</strong>
+              </div>
+              <div>
+                <span>Tuần này</span>
+                <strong>₫ 43.6M</strong>
+              </div>
+              <div>
+                <span>Tháng này</span>
+                <strong>₫ 112.4M</strong>
+              </div>
+            </div>
+            <div class="sparkline" id="revenueSparkline"></div>
+          </article>
+
+          <article class="glass-card card-panel reveal">
+            <div class="report-card-head">
+              <div>
+                <h3>Thể loại phổ biến</h3>
+                <p>Số sách và lượt mượn theo nhóm</p>
+              </div>
+            </div>
+            <div class="category-list">
+              <div class="category-item">
+                <div class="category-item__meta">
+                  <strong>Công nghệ</strong>
+                  <span>182 sách · 246 lượt</span>
+                </div>
+                <div class="progress-bar">
+                  <span style="--value: 82%"></span>
+                </div>
+              </div>
+              <div class="category-item">
+                <div class="category-item__meta">
+                  <strong>Kinh doanh</strong>
+                  <span>126 sách · 198 lượt</span>
+                </div>
+                <div class="progress-bar">
+                  <span style="--value: 70%"></span>
+                </div>
+              </div>
+              <div class="category-item">
+                <div class="category-item__meta">
+                  <strong>Văn học</strong>
+                  <span>98 sách · 164 lượt</span>
+                </div>
+                <div class="progress-bar">
+                  <span style="--value: 64%"></span>
+                </div>
+              </div>
+              <div class="category-item">
+                <div class="category-item__meta">
+                  <strong>Khoa học</strong>
+                  <span>87 sách · 142 lượt</span>
+                </div>
+                <div class="progress-bar">
+                  <span style="--value: 58%"></span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="content-grid report-content-grid">
+          <article class="glass-card card-panel reveal">
+            <div class="report-card-head">
+              <div>
+                <h3>Tần suất mượn</h3>
+                <p>Heatmap 7 ngày gần đây</p>
+              </div>
+            </div>
+            <div class="heatmap" id="heatmap"></div>
+          </article>
+
+          <article class="glass-card card-panel reveal">
+            <div class="report-card-head">
+              <div>
+                <h3>Lịch sử gần đây</h3>
+                <p>Hoạt động mới nhất của thư viện</p>
+              </div>
+            </div>
+            <ul class="timeline-list report-timeline">
+              <li>
+                <strong>Nguyễn Minh An</strong> vừa mượn <em>Atomic Habits</em>
+              </li>
+              <li><strong>Trần Huyền</strong> vừa trả <em>Deep Work</em></li>
+              <li>
+                <strong>Lê Thanh Tâm</strong> vừa gia hạn
+                <em>Thinking, Fast and Slow</em>
+              </li>
+              <li>
+                <strong>Hệ thống</strong> vừa thu tiền phạt <em>₫ 1.2M</em>
+              </li>
+            </ul>
+          </article>
+        </section>
+      </main>
+
+      <footer class="footer glass-card reveal">
+        <p>© 2026 Thư viện thông minh. Mọi quyền được bảo lưu.</p>
+      </footer>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/loader.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/guard.js"></script>
+    <script src="js/report.js"></script>
+
+    <script>
+      requireLogin();
+    </script>
+  </body>
+</html>

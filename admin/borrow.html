@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý mượn trả - Thư viện thông minh</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/light.css" />
+    <link rel="stylesheet" href="../css/dark.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="admin-header"></div>
+      <main class="admin-layout">
+        <div id="admin-sidebar"></div>
+        <section class="glass-card admin-content">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 24px;
+            "
+          >
+            <div>
+              <h1>Quản lý mượn trả</h1>
+              <p>Theo dõi tình trạng mượn và tính phạt tự động.</p>
+            </div>
+            <button class="btn btn--primary" onclick="openBorrowModal()">
+              Tạo phiếu mượn
+            </button>
+          </div>
+          <div
+            id="adminBorrowList"
+            style="display: flex; flex-direction: column; gap: 12px"
+          ></div>
+        </section>
+      </main>
+      <div id="admin-footer"></div>
+    </div>
+
+    <!-- Modal Tạo phiếu mượn -->
+    <div
+      id="borrowModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+      "
+    >
+      <div
+        class="glass-card"
+        style="
+          width: 100%;
+          max-width: 450px;
+          padding: 24px;
+          background: var(--surface-color, #ffffff);
+          border-radius: 12px;
+          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        "
+      >
+        <h3 style="margin-bottom: 16px; font-size: 1.25rem">
+          Tạo phiếu mượn mới
+        </h3>
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Chọn Độc giả</label
+          >
+          <select
+            id="borrowUser"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+              background: white;
+            "
+          ></select>
+        </div>
+
+        <div style="margin-bottom: 16px">
+          <label
+            style="
+              display: block;
+              margin-bottom: 4px;
+              font-size: 0.9rem;
+              font-weight: 500;
+            "
+            >Chọn Sách</label
+          >
+          <select
+            id="borrowBook"
+            style="
+              width: 100%;
+              padding: 10px;
+              border: 1px solid #d1d5db;
+              border-radius: 6px;
+              outline: none;
+              background: white;
+            "
+          ></select>
+        </div>
+
+        <div
+          style="
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+          "
+        >
+          <button class="btn btn--ghost" onclick="closeBorrowModal()">
+            Hủy
+          </button>
+          <button class="btn btn--primary" onclick="saveBorrow()">
+            Tạo phiếu
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../js/storage.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/notification.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/components.js"></script>
+
+    <script>
+      requireAdmin();
+      let borrows = [];
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        try {
+          if (typeof DataLoader !== "undefined") await DataLoader.initialize();
+        } catch (e) {}
+        borrows = Storage.getBorrows() || [];
+
+        // Đổ data vào dropdown Modal
+        const books = Storage.getBooks() || [];
+        const users = Storage.getUsers() || [];
+        document.getElementById("borrowBook").innerHTML = books
+          .map((b) => `<option value="${b.title}">${b.title}</option>`)
+          .join("");
+        document.getElementById("borrowUser").innerHTML = users
+          .map(
+            (u) =>
+              `<option value="${u.name || u.fullName}">${u.name || u.fullName}</option>`,
+          )
+          .join("");
+
+        renderBorrows();
+      });
+
+      function renderBorrows() {
+        const list = document.getElementById("adminBorrowList");
+        if (borrows.length === 0) {
+          list.innerHTML =
+            '<p class="empty-state">Chưa có dữ liệu mượn trả.</p>';
+          return;
+        }
+
+        list.innerHTML = borrows
+          .map((b) => {
+            let color =
+              b.status === "Đang mượn"
+                ? "#3b82f6"
+                : b.status === "Đã trả"
+                  ? "#10b981"
+                  : "#ea580c";
+            let bg =
+              b.status === "Đang mượn"
+                ? "#dbeafe"
+                : b.status === "Đã trả"
+                  ? "#d1fae5"
+                  : "#ffedd5";
+            return `
+             <div class="list-item" style="display:flex; justify-content:space-between; align-items:center; padding:16px; border-bottom:1px solid #e5e7eb;">
+                <div>
+                    <strong style="font-size: 1.1rem; color: var(--text-color, #111827);">${b.bookTitle}</strong>
+                    <p style="margin:4px 0 0; font-size:0.9rem; color:#6b7280;">Độc giả: <b>${b.userName}</b> • Mượn: ${b.borrowDate} • Hạn trả: <span style="color:#ef4444; font-weight:bold;">${b.dueDate}</span></p>
+                </div>
+                <div style="text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 8px;">
+                    <span class="status-pill" style="background:${bg}; color:${color}; padding:4px 10px; border-radius:6px; font-size:0.85rem;">${b.status}</span>
+                    <div style="display: flex; gap: 8px;">
+                        ${b.status !== "Đã trả" ? `<button class="btn btn--ghost" style="padding: 6px 12px; font-size: 0.85rem;" onclick="extendBorrow('${b.id}')">Gia hạn (+7 ngày)</button>` : ""}
+                        <button class="btn btn--ghost" style="padding: 6px 12px; font-size: 0.85rem; color: #10b981;" onclick="markAsReturned('${b.id}')">Đã trả</button>
+                    </div>
+                </div>
+             </div>
+             `;
+          })
+          .join("");
+      }
+
+      function openBorrowModal() {
+        document.getElementById("borrowModal").style.display = "flex";
+      }
+      function closeBorrowModal() {
+        document.getElementById("borrowModal").style.display = "none";
+      }
+
+      function saveBorrow() {
+        const user = document.getElementById("borrowUser").value;
+        const book = document.getElementById("borrowBook").value;
+
+        // Lấy ngày hiện tại và +14 ngày cho hạn trả
+        const today = new Date();
+        const due = new Date(today);
+        due.setDate(due.getDate() + 14);
+
+        borrows.unshift({
+          id: Date.now().toString(),
+          bookTitle: book,
+          userName: user,
+          borrowDate: today.toLocaleDateString("vi-VN"),
+          dueDate: due.toLocaleDateString("vi-VN"),
+          status: "Đang mượn",
+        });
+
+        Storage.saveBorrows(borrows);
+        renderBorrows();
+        closeBorrowModal();
+        showNotification("Tạo phiếu mượn thành công!", "success");
+      }
+
+      function extendBorrow(id) {
+        const record = borrows.find((b) => String(b.id) === String(id));
+        if (record) {
+          const parts = record.dueDate.split("/");
+          let date = new Date(parts[2], parts[1] - 1, parts[0]);
+          date.setDate(date.getDate() + 7); // Gia hạn 7 ngày
+          record.dueDate = date.toLocaleDateString("vi-VN");
+          record.status = "Đang mượn";
+
+          Storage.saveBorrows(borrows);
+          renderBorrows();
+          showNotification(
+            `Đã gia hạn thêm 7 ngày cho sách "${record.bookTitle}"!`,
+            "success",
+          );
+        }
+      }
+
+      function markAsReturned(id) {
+        const record = borrows.find((b) => String(b.id) === String(id));
+        if (record) {
+          record.status = "Đã trả";
+          Storage.saveBorrows(borrows);
+          renderBorrows();
+          showNotification("Đã cập nhật trạng thái trả sách!", "success");
+        }
+      }
+    </script>
+  </body>
+</html>
