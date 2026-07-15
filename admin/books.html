@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản lý sách - Thư viện thông minh</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/light.css" />
+    <link rel="stylesheet" href="../css/dark.css" />
+    <link rel="stylesheet" href="../css/admin.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div id="admin-header"></div>
+
+      <main class="admin-layout">
+        <div id="admin-sidebar"></div>
+
+        <section class="glass-card admin-content">
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 24px;
+            "
+          >
+            <div>
+              <h1>Quản lý sách</h1>
+              <p>Quản lý toàn bộ dữ liệu sách trong hệ thống.</p>
+            </div>
+            <button id="btnAddBook" class="btn btn--primary">
+              Thêm sách mới
+            </button>
+          </div>
+
+          <!-- Khung chứa 150 quyển sách -->
+          <div
+            id="adminBookList"
+            style="display: flex; flex-direction: column; gap: 12px"
+          >
+            <!-- Sách sẽ được render tự động vào đây -->
+          </div>
+        </section>
+      </main>
+
+      <div id="admin-footer"></div>
+    </div>
+
+    <div id="notificationContainer" class="notification-container"></div>
+
+    <!-- Đã sửa lại đường dẫn có ../ -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/notification.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/guard.js"></script>
+    <script src="../js/components.js"></script>
+
+    <!-- Script tự động hiển thị và thêm dữ liệu sách -->
+    <script>
+      requireAdmin();
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const bookList = document.getElementById("adminBookList");
+
+        // Tách riêng hàm render để có thể gọi lại
+        const renderBooks = () => {
+          const books = Storage.getBooks() || [];
+
+          if (books.length === 0) {
+            bookList.innerHTML =
+              '<p class="empty-state">Chưa có dữ liệu sách. Hãy thêm dữ liệu JSON vào hệ thống.</p>';
+            return;
+          }
+
+          bookList.innerHTML = books
+            .map(
+              (book) => `
+                <div class="list-item" style="display: flex; justify-content: space-between; align-items: center;">
+                  <div>
+                    <strong style="font-size: 1.1rem; display: block; margin-bottom: 4px;">${book.title}</strong>
+                    <p style="margin: 0; font-size: 0.9rem; opacity: 0.8;">
+                      Tác giả: ${book.author} • Thể loại: ${book.category || "Khác"} • ISBN: ${book.isbn || "N/A"}
+                    </p>
+                  </div>
+                  <div style="text-align: right; display: flex; flex-direction: column; gap: 8px; align-items: flex-end;">
+                    <span class="status-pill active">Sẵn có: ${book.available} cuốn</span>
+                    <button class="btn btn--ghost" style="padding: 4px 12px; font-size: 0.85rem;">Sửa / Xóa</button>
+                  </div>
+                </div>
+              `,
+            )
+            .join("");
+        };
+
+        // Lần 1: Cố gắng vẽ ngay lập tức (nếu data đã có sẵn trong Local Storage)
+        renderBooks();
+
+        // Lần 2: Chờ 0.5 giây cho file loader.js chạy xong rồi vẽ lại chắc cú
+        setTimeout(renderBooks, 500);
+
+        // ==========================================
+        // LOGIC CHỨC NĂNG THÊM SÁCH MỚI
+        // ==========================================
+
+        // 1. Tạo giao diện Cửa sổ (Modal) Thêm sách
+        const addBookModalHTML = `
+            <div id="addBookModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(5px);">
+                <div class="glass-card" style="width: 90%; max-width: 550px; padding: 24px; border-radius: 16px; background: var(--surface-color, #ffffff);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <h3 style="margin: 0; font-size: 1.4rem; color: var(--text-color, #111827);">📚 Thêm Sách Mới</h3>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px;">
+                        <div style="grid-column: 1 / -1;">
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600;">Tên sách <span style="color:red;">*</span></label>
+                            <input type="text" id="newBookTitle" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; background: #f9fafb;" placeholder="Nhập tên sách...">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600;">Tác giả <span style="color:red;">*</span></label>
+                            <input type="text" id="newBookAuthor" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; background: #f9fafb;" placeholder="Nhập tên tác giả...">
+                        </div>
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600;">Thể loại</label>
+                            <input type="text" id="newBookCategory" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; background: #f9fafb;" placeholder="VD: Kinh tế, Văn học...">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600;">Mã ISBN</label>
+                            <input type="text" id="newBookISBN" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; background: #f9fafb;" placeholder="Để trống sẽ tự tạo...">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 8px; font-size: 0.9rem; font-weight: 600;">Số lượng (Sẵn có) <span style="color:red;">*</span></label>
+                            <input type="number" id="newBookAvailable" min="1" value="1" style="width: 100%; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; outline: none; background: #f9fafb;">
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: flex-end; gap: 12px;">
+                        <button class="btn btn--ghost" style="padding: 10px 20px;" onclick="closeAddBookModal()">Hủy bỏ</button>
+                        <button class="btn btn--primary" style="background: linear-gradient(135deg, #3b82f6, #6366f1); border: none; padding: 10px 24px; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);" onclick="confirmAddBook()">Lưu Sách</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        // Chèn modal vào thẻ body
+        if (!document.getElementById("addBookModal")) {
+          document.body.insertAdjacentHTML("beforeend", addBookModalHTML);
+        }
+
+        // 2. Gán sự kiện mở Modal cho nút "Thêm sách mới"
+        const addBtn = document.getElementById("btnAddBook");
+        if (addBtn) {
+          addBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            openAddBookModal();
+          });
+        }
+
+        // 3. Các hàm logic xử lý
+        window.openAddBookModal = function () {
+          document.getElementById("addBookModal").style.display = "flex";
+        };
+
+        window.closeAddBookModal = function () {
+          document.getElementById("addBookModal").style.display = "none";
+          // Reset form
+          document.getElementById("newBookTitle").value = "";
+          document.getElementById("newBookAuthor").value = "";
+          document.getElementById("newBookCategory").value = "";
+          document.getElementById("newBookISBN").value = "";
+          document.getElementById("newBookAvailable").value = "1";
+        };
+
+        window.confirmAddBook = function () {
+          const title = document.getElementById("newBookTitle").value.trim();
+          const author = document.getElementById("newBookAuthor").value.trim();
+          const category =
+            document.getElementById("newBookCategory").value.trim() || "Khác";
+          const isbn =
+            document.getElementById("newBookISBN").value.trim() ||
+            `978-${Math.floor(100000000 + Math.random() * 900000000)}`;
+          const available =
+            parseInt(document.getElementById("newBookAvailable").value) || 1;
+
+          if (!title || !author) {
+            if (typeof showNotification === "function") {
+              showNotification("Vui lòng nhập Tên sách và Tác giả!", "warning");
+            } else {
+              alert("Vui lòng nhập Tên sách và Tác giả!");
+            }
+            return;
+          }
+
+          const books = Storage.getBooks() || [];
+
+          const newBook = {
+            id: Date.now().toString(),
+            title: title,
+            author: author,
+            category: category,
+            isbn: isbn,
+            available: available,
+            rating: 5.0,
+            featured: false,
+          };
+
+          // Đẩy sách mới lên ĐẦU danh sách
+          books.unshift(newBook);
+          Storage.saveBooks(books);
+
+          if (typeof showNotification === "function") {
+            showNotification(`Đã thêm sách "${title}" thành công!`, "success");
+          } else {
+            alert(`Đã thêm sách "${title}" thành công!`);
+          }
+
+          closeAddBookModal();
+
+          // Render lại danh sách ngay lập tức mà không cần F5 trang
+          renderBooks();
+        };
+      });
+    </script>
+  </body>
+</html>
